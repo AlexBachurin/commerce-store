@@ -4,26 +4,28 @@ import { links } from '../utils.js/constants';
 import { FaTimes } from 'react-icons/fa'
 import { Link } from 'react-router-dom';
 import { NavInteraction } from '.';
+import { useProductsContext } from '../contexts/products_context';
 const Sidebar = () => {
-    return <SidebarContainer>
-        <aside className='sidebar show-sidebar'>
-            <div className="sidebar-header">
-                <img className='logo' src="https://res.cloudinary.com/dljezd6qv/image/upload/v1643432194/commerce-store/logo_fmvgto.svg" alt="logo" />
-                <button className="close-btn"><FaTimes /></button>
-            </div>
-            <ul className="links">
-                {links.map(link => {
-                    const { id, text, url } = link;
-                    return (
-                        <li key={id}>
-                            <Link to={url}>{text}</Link>
-                        </li>
-                    )
-                })}
-            </ul>
-            <NavInteraction />
-        </aside>
-    </SidebarContainer>;
+  const { isSidebarOpen, closeSidebar } = useProductsContext();
+  return <SidebarContainer>
+    <aside className={`${isSidebarOpen ? 'sidebar show-sidebar' : 'sidebar'}`}>
+      <div className="sidebar-header">
+        <img className='logo' src="https://res.cloudinary.com/dljezd6qv/image/upload/v1643432194/commerce-store/logo_fmvgto.svg" alt="logo" />
+        <button onClick={closeSidebar} className="close-btn"><FaTimes /></button>
+      </div>
+      <ul className="links">
+        {links.map(link => {
+          const { id, text, url } = link;
+          return (
+            <li key={id}>
+              <Link onClick={closeSidebar} to={url}>{text}</Link>
+            </li>
+          )
+        })}
+      </ul>
+      <NavInteraction />
+    </aside>
+  </SidebarContainer>;
 };
 
 const SidebarContainer = styled.div`

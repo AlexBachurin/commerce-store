@@ -4,28 +4,30 @@ import styled from 'styled-components'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { links } from '../utils.js/constants';
 import { NavInteraction } from '.';
+import { useProductsContext } from '../contexts/products_context';
 const Navbar = () => {
-    return <NavContainer>
-        <div className="nav-center">
-            <div className="nav-header">
-                <Link to={'/'}>
-                    <img src='https://res.cloudinary.com/dljezd6qv/image/upload/v1643432194/commerce-store/logo_fmvgto.svg' alt='logo'></img>
-                </Link>
-                <button className='nav-toggle'><GiHamburgerMenu /></button>
-            </div>
-            <ul className="nav-links">
-                {links.map(link => {
-                    const { id, url, text } = link;
-                    return (
-                        <li key={id}>
-                            <Link to={url}>{text}</Link>
-                        </li>
-                    )
-                })}
-            </ul>
-            <NavInteraction />
-        </div>
-    </NavContainer>
+  const { openSidebar } = useProductsContext();
+  return <NavContainer>
+    <div className="nav-center">
+      <div className="nav-header">
+        <Link to={'/'}>
+          <img src='https://res.cloudinary.com/dljezd6qv/image/upload/v1643432194/commerce-store/logo_fmvgto.svg' alt='logo'></img>
+        </Link>
+        <button className='nav-toggle' onClick={openSidebar}><GiHamburgerMenu /></button>
+      </div>
+      <ul className="nav-links">
+        {links.map(link => {
+          const { id, url, text } = link;
+          return (
+            <li key={id}>
+              <Link to={url}>{text}</Link>
+            </li>
+          )
+        })}
+      </ul>
+      <NavInteraction />
+    </div>
+  </NavContainer>
 };
 
 const NavContainer = styled.nav`

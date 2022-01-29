@@ -2,20 +2,22 @@ import React from 'react';
 import styled from 'styled-components';
 import { AiOutlineShoppingCart, AiOutlineUser } from 'react-icons/ai'
 import { Link } from 'react-router-dom';
+import { useProductsContext } from '../contexts/products_context';
 const NavInteraction = () => {
-    return <Wrapper className='cart-btn-wrapper'>
-        <Link className='cart-btn' to={'/cart'}>
-            Cart
-            <span className='cart-container'>
-                <AiOutlineShoppingCart />
-                <span className='cart-value'>5</span>
-            </span>
-        </Link>
-        <button className="auth-btn">
-            Login
-            <AiOutlineUser />
-        </button>
-    </Wrapper>;
+  const { closeSidebar } = useProductsContext();
+  return <Wrapper className='cart-btn-wrapper'>
+    <Link onClick={closeSidebar} className='cart-btn' to={'/cart'}>
+      Cart
+      <span className='cart-container'>
+        <AiOutlineShoppingCart />
+        <span className='cart-value'>5</span>
+      </span>
+    </Link>
+    <button className="auth-btn">
+      Login
+      <AiOutlineUser />
+    </button>
+  </Wrapper>;
 };
 
 const Wrapper = styled.div`
