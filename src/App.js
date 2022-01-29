@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { Footer, Navbar, Sidebar } from "./components";
-import { HomePage, AboutPage, ProductsPage, SingleProductPage } from './pages'
+import { HomePage, AboutPage, ProductsPage, SingleProductPage, CartPage } from './pages'
 function App() {
   return (
     <Router>
@@ -12,6 +12,7 @@ function App() {
         <Route path='/about' element={<AboutPage />} />
         <Route path='/products' element={<ProductsPage />} />
         <Route path='/products/:id' element={<SingleProductPage />} />
+        <Route path='/cart' element={<CartPage />} />
       </Routes>
       <Footer />
     </Router>
