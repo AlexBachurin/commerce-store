@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { useParams, Link } from 'react-router-dom';
 import { useProductsContext } from '../contexts/products_context';
 import { single_product_url } from '../utils.js/constants';
-import Loading from '../components/Loading'
+import { Loading, Error } from '../components'
 const SingleProductPage = () => {
   const { id } = useParams();
   const { fetchSingleProduct, single_product, single_product_error: error, single_product_loading: loading } = useProductsContext();
@@ -15,6 +15,9 @@ const SingleProductPage = () => {
 
   if (loading) {
     return <Loading />
+  }
+  if (error) {
+    return <Error />
   }
   return <Wrapper>
 
