@@ -6,7 +6,7 @@ const AboutPage = () => {
         <UpperWrapper>
             <div className="section-center">
                 <h3>
-                    <Link to={'/'}>Home</Link>/About
+                    <Link to={'/'}>Home</Link> / About
                 </h3>
             </div>
         </UpperWrapper>
