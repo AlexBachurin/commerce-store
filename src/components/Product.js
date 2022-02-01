@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom'
-
+import { formatPrice } from '../utils.js/helpers';
 const Product = ({ name, image, price }) => {
   return <Wrapper>
     <div className="container">
@@ -10,7 +10,7 @@ const Product = ({ name, image, price }) => {
     </div>
     <footer>
       <h5>{name}</h5>
-      <p>${price}</p>
+      <p>{formatPrice(price)}</p>
     </footer>
   </Wrapper>;
 };
