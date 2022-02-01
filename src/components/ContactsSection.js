@@ -6,8 +6,9 @@ const ContactsSection = () => {
             <h3>Join our newsletter and get 20% off</h3>
             <div className="content">
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat sint unde quaerat ratione soluta veniam provident adipisci cumque eveniet tempore?</p>
-                <form className="contact-form">
-                    <input className='form-input' type="email" name="email" id="email" placeholder='enter email' />
+                <form action="https://formspree.io/f/xpzbpdrl"
+                    method="POST" className="contact-form">
+                    <input className='form-input' type="email" name="_replyto" id="email" placeholder='enter email' />
                     <button className="submit-btn" type='submit'>subscribe</button>
                 </form>
             </div>
