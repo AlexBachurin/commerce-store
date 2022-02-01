@@ -2,17 +2,17 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom'
 
-const Product = () => {
-    return <Wrapper>
-        <div className="container">
-            <img src="" alt="" />
-            <Link to={'/products/id'}></Link>
-        </div>
-        <footer>
-            <h5>name</h5>
-            <p>$price</p>
-        </footer>
-    </Wrapper>;
+const Product = ({ name, image, price }) => {
+  return <Wrapper>
+    <div className="container">
+      <img src={image} alt={name} />
+      <Link to={'/products/id'}></Link>
+    </div>
+    <footer>
+      <h5>{name}</h5>
+      <p>${price}</p>
+    </footer>
+  </Wrapper>;
 };
 
 const Wrapper = styled.article`

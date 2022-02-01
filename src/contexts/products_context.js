@@ -25,7 +25,7 @@ export const ProductsProvider = ({ children }) => {
         dispatch({ type: SIDEBAR_CLOSE })
     }
 
-    /// *** FETCH PRODUCTS ***
+    // / *** FETCH PRODUCTS ***
     const fetchProducts = async () => {
         //first dispatch that we beginning to fetch , so we can turn loading to true
         dispatch({ type: GET_PRODUCTS_BEGIN })
@@ -48,7 +48,7 @@ export const ProductsProvider = ({ children }) => {
     return <ProductsContext.Provider value={{
         ...state,
         openSidebar,
-        closeSidebar
+        closeSidebar,
     }}>
         {children}
     </ProductsContext.Provider>

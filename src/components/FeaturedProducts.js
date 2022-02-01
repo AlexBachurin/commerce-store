@@ -2,19 +2,21 @@ import React from 'react';
 import styled from 'styled-components'
 import Product from './Product';
 import { Link } from 'react-router-dom';
+import { useProductsContext } from '../contexts/products_context';
+import { Loading } from '.';
 const FeaturedProducts = () => {
-    return <Wrapper className='section'>
-        <div className="title">
-            <h2>featured products</h2>
-            <div className="underline"></div>
-        </div>
-        <div className="section-center featured">
-            <Product />
-            <Product />
-            <Product />
-        </div>
-        <Link to={'/products'} className='btn'>All Products</Link>
-    </Wrapper>;
+  const { featuredProducts, products_loading } = useProductsContext();
+  return <Wrapper className='section'>
+    <div className="title">
+      <h2>featured products</h2>
+      <div className="underline"></div>
+    </div>
+    <div className="section-center featured">
+      {/* if loading display loading else display products */}
+      {products_loading ? <Loading /> : <Products featuredProducts={featuredProducts} />}
+    </div>
+    <Link to={'/products'} className='btn'>All Products</Link>
+  </Wrapper>;
 };
 
 const Wrapper = styled.section`
@@ -39,5 +41,15 @@ const Wrapper = styled.section`
     }
   }
 `
+//helper to display featured products
+const Products = ({ featuredProducts }) => {
+  return (
+    <>
+      {featuredProducts.map(product => {
+        return <Product key={product.id} {...product} />
+      })}
+    </>
+  )
+}
 
 export default FeaturedProducts;
