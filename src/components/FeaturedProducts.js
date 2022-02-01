@@ -3,9 +3,12 @@ import styled from 'styled-components'
 import Product from './Product';
 import { Link } from 'react-router-dom';
 import { useProductsContext } from '../contexts/products_context';
-import { Loading } from '.';
+import { Loading, Error } from '.';
 const FeaturedProducts = () => {
-  const { featuredProducts, products_loading } = useProductsContext();
+  const { featuredProducts, products_loading, products_error } = useProductsContext();
+  if (products_error) {
+    return <Error />
+  }
   return <Wrapper className='section'>
     <div className="title">
       <h2>featured products</h2>
