@@ -1,13 +1,12 @@
 import React from 'react';
-import { PageMain } from '../components';
+import { ContactsSection, FeaturedProducts, HeroSection, ServicesSection } from '../components';
 const HomePage = () => {
-    return <div>
-
-
-        <PageMain />
-
-
-    </div>;
+    return <main>
+        <HeroSection />
+        <FeaturedProducts />
+        <ServicesSection />
+        <ContactsSection />
+    </main>
 };
 
 export default HomePage;
