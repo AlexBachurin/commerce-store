@@ -3,14 +3,13 @@ import styled from 'styled-components'
 import { useParams, Link } from 'react-router-dom';
 import { useProductsContext } from '../contexts/products_context';
 import { single_product_url } from '../utils.js/constants';
-import { Loading, Error } from '../components'
+import { Loading, Error, HeroNavigation } from '../components'
 const SingleProductPage = () => {
   const { id } = useParams();
   const { fetchSingleProduct, single_product, single_product_error: error, single_product_loading: loading } = useProductsContext();
 
   useEffect(() => {
     fetchSingleProduct(single_product_url, id);
-    console.log(single_product)
   }, [])
 
   if (loading) {
@@ -20,7 +19,7 @@ const SingleProductPage = () => {
     return <Error />
   }
   return <Wrapper>
-
+    <HeroNavigation pageName={'products'} product={single_product} />
   </Wrapper>;
 };
 

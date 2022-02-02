@@ -2,12 +2,21 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-
-const HeroNavigation = () => {
+//we will accept current page name and product if we are in single product page since we wanna handle it differently
+const HeroNavigation = ({ pageName, product }) => {
+    console.log(pageName)
+    console.log(product);
+    let productTitle = ''
+    if (product) {
+        productTitle = product.name;
+        console.log(productTitle)
+    }
     return <UpperWrapper>
         <div className="section-center">
             <h3>
-                <Link to={'/'}>Home</Link> / About
+                <Link to={'/'}>Home</Link>/
+                {product ? <Link to='/products'> products</Link> / `${productTitle}` : `${pageName}`}
+
             </h3>
         </div>
     </UpperWrapper>;

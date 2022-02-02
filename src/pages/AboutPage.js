@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { HeroNavigation } from '../components';
 const AboutPage = () => {
   return <main>
-    <HeroNavigation />
+    <HeroNavigation pageName={'About'} />
     <Wrapper className='page section section-center'>
       <img src="https://res.cloudinary.com/dljezd6qv/image/upload/v1643432214/commerce-store/about-img.jpg" alt="about" />
       <article>
