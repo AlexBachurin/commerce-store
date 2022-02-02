@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { useParams, Link } from 'react-router-dom';
 import { useProductsContext } from '../contexts/products_context';
 import { single_product_url } from '../utils.js/constants';
-import { Loading, Error, HeroNavigation } from '../components'
+import { Loading, Error, HeroNavigation, ProductImages } from '../components'
 const SingleProductPage = () => {
   const { id } = useParams();
   const { fetchSingleProduct, single_product, single_product_error: error, single_product_loading: loading } = useProductsContext();
@@ -18,8 +18,15 @@ const SingleProductPage = () => {
   if (error) {
     return <Error />
   }
+  const { images, name } = single_product;
   return <Wrapper>
-    <HeroNavigation pageName={single_product.name} product={single_product} />
+    <HeroNavigation pageName={name} product={single_product} />
+    <div className="section section-center">
+      <Link to={'/'} className='btn'>Back to Products</Link>
+      <div className="product-center">
+        <ProductImages images={images} />
+      </div>
+    </div>
   </Wrapper>;
 };
 
