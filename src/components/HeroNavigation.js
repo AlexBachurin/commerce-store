@@ -6,16 +6,12 @@ import { Link } from 'react-router-dom';
 const HeroNavigation = ({ pageName, product }) => {
     console.log(pageName)
     console.log(product);
-    let productTitle = ''
-    if (product) {
-        productTitle = product.name;
-        console.log(productTitle)
-    }
     return <UpperWrapper>
         <div className="section-center">
             <h3>
-                <Link to={'/'}>Home</Link>/
-                {product ? <Link to='/products'> products</Link> / `${productTitle}` : `${pageName}`}
+                <Link to={'/'}>Home</Link>
+                {/* {product ? <Link to='/products'> products</Link> / `${product.name}` : `${pageName}`} */}
+                {product && <Link to='/products'>/ Products</Link>}/ {pageName}
 
             </h3>
         </div>

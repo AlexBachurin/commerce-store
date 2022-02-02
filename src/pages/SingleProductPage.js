@@ -19,7 +19,7 @@ const SingleProductPage = () => {
     return <Error />
   }
   return <Wrapper>
-    <HeroNavigation pageName={'products'} product={single_product} />
+    <HeroNavigation pageName={single_product.name} product={single_product} />
   </Wrapper>;
 };
 
