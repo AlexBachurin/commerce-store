@@ -27,8 +27,24 @@ const ProductStars = ({ stars, reviews }) => {
         )
     })
 
-    return <div></div>;
+    return <Wrapper>
+        <div className="stars">
+            {starsArr.map((item, index) => {
+                return (
+                    <Star item={item} key={index} />
+                );
+            })}
+        </div>
+        <p className="reviews">
+            {`(${reviews} customer reviews)`}
+        </p>
+    </Wrapper>;
 };
+
+//local component for single star
+const Star = ({ item }) => {
+    return item;
+}
 
 const Wrapper = styled.div`
   display: flex;
