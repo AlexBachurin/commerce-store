@@ -6,7 +6,30 @@ import { ProductAmount } from '.';
 const ProductAddToCart = ({ colors, stock }) => {
     //state for active chosen color, will be first by default
     const [activeColor, setActiveColor] = useState(colors[0]);
-    console.log(colors);
+    //state for amount
+    const [amount, setAmount] = useState(1);
+
+    //change amount
+    const increase = () => {
+        setAmount(oldAmount => {
+            let tmpAmount = oldAmount + 1;
+            //if amount is gonna be more then items in stock, return stock amount;
+            if (tmpAmount > stock) {
+                tmpAmount = stock;
+            }
+            return tmpAmount;
+        })
+    }
+    const decrease = () => {
+        setAmount(oldAmount => {
+            let tmpAmount = oldAmount - 1;
+            //if amount is gonna be less then 1, return 1;
+            if (tmpAmount < 1) {
+                tmpAmount = 1;
+            }
+            return tmpAmount;
+        })
+    }
     //change color on click
     const changeColor = (index) => {
         setActiveColor(colors[index]);
@@ -26,7 +49,7 @@ const ProductAddToCart = ({ colors, stock }) => {
             </div>
         </div>
         <div className="btn-container">
-            <ProductAmount />
+            <ProductAmount amount={amount} increase={increase} decrease={decrease} />
             <Link className='btn' to={'/cart'}>add to cart</Link>
         </div>
     </Wrapper>;
