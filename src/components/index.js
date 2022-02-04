@@ -13,6 +13,6 @@ import Error from './Error'
 import ProductImages from "./ProductImages";
 import ProductContent from "./ProductContent";
 import ProductStars from "./ProductStars";
-import ProductColors from "./ProductColors";
-
-export { Navbar, Sidebar, PageMain, Footer, NavInteraction, HeroSection, ContactsSection, ServicesSection, FeaturedProducts, Loading, HeroNavigation, Error, ProductImages, ProductContent, ProductStars, ProductColors }
+import ProductAddToCart from "./ProductAddToCart";
+import ProductAmount from "./ProductAmount";
+export { Navbar, Sidebar, PageMain, Footer, NavInteraction, HeroSection, ContactsSection, ServicesSection, FeaturedProducts, Loading, HeroNavigation, Error, ProductImages, ProductContent, ProductStars, ProductAddToCart, ProductAmount }

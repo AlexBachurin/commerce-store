@@ -1,8 +1,7 @@
 import React from 'react';
-import { ProductColors, ProductStars } from '.';
+import { ProductAddToCart, ProductStars } from '.';
 import { formatPrice } from '../utils.js/helpers';
 const ProductContent = ({ product }) => {
-    console.log(product);
     const { name, price, id, stars, stock, reviews, colors, description, company } = product;
     return <section className='content'>
         <h2>{name}</h2>
@@ -12,7 +11,7 @@ const ProductContent = ({ product }) => {
         <p className="info"><span>Availiable: </span> {stock} </p>
         <p className="info"><span>ID: </span> {id} </p>
         <p className="info"><span>Brand: </span> {company} </p>
-        <ProductColors colors={colors} stock={stock} />
+        <ProductAddToCart colors={colors} stock={stock} />
     </section>;
 };
 
