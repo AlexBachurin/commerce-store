@@ -12,5 +12,7 @@ import HeroNavigation from "./HeroNavigation";
 import Error from './Error'
 import ProductImages from "./ProductImages";
 import ProductContent from "./ProductContent";
+import ProductStars from "./ProductStars";
+import ProductColors from "./ProductColors";
 
-export { Navbar, Sidebar, PageMain, Footer, NavInteraction, HeroSection, ContactsSection, ServicesSection, FeaturedProducts, Loading, HeroNavigation, Error, ProductImages, ProductContent }
+export { Navbar, Sidebar, PageMain, Footer, NavInteraction, HeroSection, ContactsSection, ServicesSection, FeaturedProducts, Loading, HeroNavigation, Error, ProductImages, ProductContent, ProductStars, ProductColors }

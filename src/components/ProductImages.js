@@ -3,7 +3,6 @@ import styled from 'styled-components';
 const ProductImages = ({ images }) => {
     //state for main image to display, by default will be first image by index of 0,
     //dont forget in in main variable will be object, not url, so we must access url as main.url
-    console.log(images)
     const [main, setMain] = useState(images[0]);
     //change main image on click in gallery by index of image
     const changeImage = (index) => {
