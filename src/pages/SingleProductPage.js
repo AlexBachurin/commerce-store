@@ -8,8 +8,10 @@ const SingleProductPage = () => {
   const { id } = useParams();
   const { fetchSingleProduct, single_product, single_product_error: error, single_product_loading: loading } = useProductsContext();
 
+
   useEffect(() => {
     fetchSingleProduct(single_product_url, id);
+    // eslint-disable-next-line 
   }, [])
 
   if (loading) {
