@@ -18,6 +18,7 @@ export const FilterProvider = ({ children }) => {
     // load them every time we change products arr in products state
     useEffect(() => {
         dispatch({ type: LOAD_PRODUCTS, payload: products })
+        dispatch({ type: SORT_PRODUCTS, payload: state.sort })
         console.log(state.products)
     }, [products])
 
