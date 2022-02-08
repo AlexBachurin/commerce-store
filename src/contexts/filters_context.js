@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext, useReducer } from "react";
-import { LOAD_PRODUCTS } from "../actions";
+import { LOAD_PRODUCTS, SET_GRIDVIEW, SET_LISTVIEW } from "../actions";
 
 import filters_reducer from "../reducers/filters_reducer";
 import { useProductsContext } from "./products_context";
@@ -19,9 +19,19 @@ export const FilterProvider = ({ children }) => {
         dispatch({ type: LOAD_PRODUCTS, payload: products })
         console.log(state.products)
     }, [products])
+
+    //SET GRID VIEW / LIST VIEW
+    const setGridView = () => {
+        dispatch({ type: SET_GRIDVIEW })
+    }
+    const setListView = () => {
+        dispatch({ type: SET_LISTVIEW })
+    }
     return <FiltersContext.Provider value={{
         ...state,
-        products_loading
+        products_loading,
+        setGridView,
+        setListView
     }}>
         {children}
     </FiltersContext.Provider>

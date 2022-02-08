@@ -1,11 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import { BsGridFill, BsList } from 'react-icons/bs'
+import { BsGridFill, BsList } from 'react-icons/bs';
+import { useFiltersContext } from '../contexts/filters_context';
 const ProductsSort = () => {
+    const { grid_view, setGridView, setListView } = useFiltersContext();
     return <Wrapper>
         <div className="btn-container">
-            <button><BsGridFill /></button>
-            <button><BsList /></button>
+            <button onClick={setGridView} className={`${grid_view ? 'active' : null}`}><BsGridFill /></button>
+            <button onClick={setListView} className={`${grid_view ? null : 'active'}`}><BsList /></button>
         </div>
         <p>23 products Found</p>
         <hr />
