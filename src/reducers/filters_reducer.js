@@ -1,4 +1,4 @@
-import { LOAD_PRODUCTS, SET_GRIDVIEW, SET_LISTVIEW, UPDATE_SORT, SORT_PRODUCTS, UPDATE_FILTERS } from "../actions";
+import { LOAD_PRODUCTS, SET_GRIDVIEW, SET_LISTVIEW, UPDATE_SORT, SORT_PRODUCTS, UPDATE_FILTERS, FILTER_PRODUCTS, CLEAR_FILTERS } from "../actions";
 
 
 const filters_reducer = (state, action) => {
@@ -43,6 +43,16 @@ const filters_reducer = (state, action) => {
         //only update in this scenario, if we have object inside state, first spread it, then dynamically change value [name] : value
         return { ...state, filters: { ...state.filters, [name]: value } }
     }
+    if (action.type === CLEAR_FILTERS) {
+        //get max price of item
+        const prices = state.products.map(item => item.price);
+        const maxPrice = Math.max(...prices);
+        //reset filters to initial state
+        return { ...state, filters: { text: '', category: 'all', company: 'all', color: 'all', price: maxPrice, shipping: false } }
+    }
+    // if (action.type === FILTER_PRODUCTS) {
+    //     console.log(action.payload)
+    // }
     throw new Error('no matching action type')
 
 }

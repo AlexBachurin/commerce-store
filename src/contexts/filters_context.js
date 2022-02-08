@@ -1,5 +1,5 @@
 import React, { useEffect, useContext, useReducer } from "react";
-import { LOAD_PRODUCTS, SET_GRIDVIEW, SET_LISTVIEW, SORT_PRODUCTS, UPDATE_FILTERS, UPDATE_SORT } from "../actions";
+import { CLEAR_FILTERS, FILTER_PRODUCTS, LOAD_PRODUCTS, SET_GRIDVIEW, SET_LISTVIEW, SORT_PRODUCTS, UPDATE_FILTERS, UPDATE_SORT } from "../actions";
 
 import filters_reducer from "../reducers/filters_reducer";
 import { useProductsContext } from "./products_context";
@@ -11,9 +11,9 @@ const initial_state = {
     sort: 'price-lowest',
     filters: {
         text: '',
-        category: '',
-        company: '',
-        color: '',
+        category: 'all',
+        company: 'all',
+        color: 'all',
         price: 0,
         max_price: 0,
         min_price: 0,
@@ -72,13 +72,24 @@ export const FilterProvider = ({ children }) => {
         dispatch({ type: UPDATE_FILTERS, payload: { name, value } })
     }
 
+    // *** CLEAR FILTERS ***
+    const clearFilters = () => {
+        dispatch({ type: CLEAR_FILTERS })
+    }
+
+    // *** FILTER PRODUCTS ***
+    // useEffect(() => {
+    //     dispatch({ type: FILTER_PRODUCTS, payload: state.filters })
+    // }, [state.filters])
+
     return <FiltersContext.Provider value={{
         ...state,
         products_loading,
         setGridView,
         setListView,
         updateSort,
-        updateFilters
+        updateFilters,
+        clearFilters
     }}>
         {children}
     </FiltersContext.Provider>

@@ -4,7 +4,7 @@ import { formatPrice, getUniqueValues } from '../utils.js/helpers';
 import { useFiltersContext } from '../contexts/filters_context';
 import { FaCheck } from 'react-icons/fa';
 const ProductsFilter = () => {
-  const { filters: { text, category, company, color, price, shipping, max_price, min_price }, products, updateFilters } = useFiltersContext();
+  const { filters: { text, category, company, color, price, shipping, max_price, min_price }, products, updateFilters, clearFilters } = useFiltersContext();
   //get companies, categories, colors from all products
   const companies = products.map(item => item.company);
   const categories = products.map(item => item.category);
@@ -32,7 +32,7 @@ const ProductsFilter = () => {
         </div>
         <div className="form-control">
           <h5>company</h5>
-          <select onClick={updateFilters} name="company" id="company">
+          <select onChange={updateFilters} value={company} name="company" id="company">
             {uniqCompanies.map((item, index) => {
               return (
                 <option key={index} value={item}>{item}</option>
@@ -46,7 +46,7 @@ const ProductsFilter = () => {
             {uniqColors.map((itemColor, index) => {
               if (itemColor === 'all') {
                 return (
-                  <button onClick={updateFilters} name='color' data-color='all' className={itemColor === color ? 'all-btn active' : 'all-btn'}>all</button>
+                  <button key={index} onClick={updateFilters} name='color' data-color='all' className={itemColor === color ? 'all-btn active' : 'all-btn'}>all</button>
                 )
               } else {
                 return (
@@ -67,9 +67,10 @@ const ProductsFilter = () => {
         </div>
         <div className="form-control shipping">
           <label htmlFor="shipping">Free shipping</label>
-          <input onChange={updateFilters} type="checkbox" name='shipping' id='shipping' />
+          <input onChange={updateFilters} value={shipping} type="checkbox" name='shipping' id='shipping' />
         </div>
       </form>
+      <button onClick={clearFilters} className="clear-btn">clear filters</button>
     </div>
   </Wrapper>;
 };
