@@ -1,11 +1,16 @@
 import React from 'react';
-import { GridView, ListView } from '.';
+import { GridView, ListView, Loading } from '.';
 import { useFiltersContext } from '../contexts/filters_context';
 const ProductsDisplay = () => {
     //get products to display from filters context
-    const { filtered_products: products } = useFiltersContext();
+    const { filtered_products: products, grid_view, products_loading } = useFiltersContext();
     console.log(products)
-    // return <GridView products={products}></GridView>;
+    if (products_loading) {
+        return <Loading />
+    }
+    if (grid_view) {
+        return <GridView products={products} />
+    }
     return <ListView products={products}></ListView>
 };
 
