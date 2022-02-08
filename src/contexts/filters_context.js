@@ -1,5 +1,5 @@
 import React, { useEffect, useContext, useReducer } from "react";
-import { LOAD_PRODUCTS, SET_GRIDVIEW, SET_LISTVIEW, SORT_PRODUCTS, UPDATE_SORT } from "../actions";
+import { LOAD_PRODUCTS, SET_GRIDVIEW, SET_LISTVIEW, SORT_PRODUCTS, UPDATE_FILTERS, UPDATE_SORT } from "../actions";
 
 import filters_reducer from "../reducers/filters_reducer";
 import { useProductsContext } from "./products_context";
@@ -46,7 +46,6 @@ export const FilterProvider = ({ children }) => {
         //get value from clicked select element and dispatch 
         //action to update sort with clicked value
         const value = e.target.value;
-        console.log(value)
         dispatch({ type: UPDATE_SORT, payload: value })
     }
     // *** SORT PRODUCTS ***
@@ -55,12 +54,21 @@ export const FilterProvider = ({ children }) => {
         dispatch({ type: SORT_PRODUCTS, payload: state.sort })
     }, [state.sort])
 
+    // *** UPDATE FILTERS ***
+    const updateFilters = (e) => {
+        const name = e.target.name;
+        const value = e.target.value;
+        console.log(name, value);
+        dispatch({ type: UPDATE_FILTERS, payload: { name, value } })
+    }
+
     return <FiltersContext.Provider value={{
         ...state,
         products_loading,
         setGridView,
         setListView,
-        updateSort
+        updateSort,
+        updateFilters
     }}>
         {children}
     </FiltersContext.Provider>

@@ -1,4 +1,4 @@
-import { LOAD_PRODUCTS, SET_GRIDVIEW, SET_LISTVIEW, UPDATE_SORT, SORT_PRODUCTS } from "../actions";
+import { LOAD_PRODUCTS, SET_GRIDVIEW, SET_LISTVIEW, UPDATE_SORT, SORT_PRODUCTS, UPDATE_FILTERS } from "../actions";
 
 
 const filters_reducer = (state, action) => {
@@ -33,6 +33,12 @@ const filters_reducer = (state, action) => {
             const sortProducts = state.filtered_products.sort((a, b) => b.name.localeCompare(a.name))
             return { ...state, filtered_products: sortProducts }
         }
+    }
+    if (action.type === UPDATE_FILTERS) {
+        const name = action.payload.name;
+        const value = action.payload.value;
+        //only update in this scenario, if we have object inside state, first spread it, then dynamically change value [name] : value
+        return { ...state, filters: { ...state.filters, [name]: value } }
     }
     throw new Error('no matching action type')
 

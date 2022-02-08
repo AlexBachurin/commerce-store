@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { formatPrice, getUniqueValues } from '../utils.js/helpers';
 import { useFiltersContext } from '../contexts/filters_context';
 const ProductsFilter = () => {
-  const { filters: { text, category, company, color, price, shipping }, products } = useFiltersContext();
+  const { filters: { text, category, company, color, price, shipping }, products, updateFilters } = useFiltersContext();
   //get companies, categories, colors from all products
   const companies = products.map(item => item.company);
   const categories = products.map(item => item.category);
@@ -20,23 +20,23 @@ const ProductsFilter = () => {
   console.log(maxPrice)
   return <Wrapper>
     <div className="content">
-      <form>
+      <form onSubmit={(e) => e.preventDefault()}>
         <div className="form-control">
-          <input value={text} type="text" name='text' id='text' placeholder='search' className='search-input' />
+          <input onChange={updateFilters} value={text} type="text" name='text' id='text' placeholder='search' className='search-input' />
         </div>
         <div className="form-control">
           <h5>category</h5>
           <div>
             {uniqCategories.map((item, index) => {
               return (
-                <button value={item} key={index} type='button' name='category'>{item}</button>
+                <button onClick={updateFilters} value={item} key={index} type='button' name='category'>{item}</button>
               )
             })}
           </div>
         </div>
         <div className="form-control">
           <h5>company</h5>
-          <select name="company" id="company">
+          <select onClick={updateFilters} name="company" id="company">
             {uniqCompanies.map((item, index) => {
               return (
                 <option key={index} value={item}>{item}</option>
@@ -50,11 +50,11 @@ const ProductsFilter = () => {
             {uniqColors.map((color, index) => {
               if (color === 'all') {
                 return (
-                  <button name='color' data-color='all' className='all-btn'>all</button>
+                  <button onClick={updateFilters} name='color' data-color='all' className='all-btn'>all</button>
                 )
               } else {
                 return (
-                  <button key={index} name='color' className='color-btn' data-color={color} style={{ background: `${color}` }}></button>
+                  <button onClick={updateFilters} key={index} name='color' className='color-btn' data-color={color} style={{ background: `${color}` }}></button>
                 )
               }
 
@@ -68,7 +68,7 @@ const ProductsFilter = () => {
         </div>
         <div className="form-control shipping">
           <label htmlFor="shipping">Free shipping</label>
-          <input value={shipping} type="checkbox" name='shipping' id='shipping' />
+          <input onClick={updateFilters} type="checkbox" name='shipping' id='shipping' />
         </div>
       </form>
     </div>
