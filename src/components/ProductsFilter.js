@@ -1,10 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { getUniqueValues } from '../utils.js/helpers';
+import { formatPrice, getUniqueValues } from '../utils.js/helpers';
 import { useFiltersContext } from '../contexts/filters_context';
 const ProductsFilter = () => {
-  const { filtered_products, products } = useFiltersContext();
-  console.log(filtered_products);
+  const { filters: { text, category, company, color, price, shipping }, products } = useFiltersContext();
   //get companies, categories, colors from all products
   const companies = products.map(item => item.company);
   const categories = products.map(item => item.category);
@@ -14,19 +13,23 @@ const ProductsFilter = () => {
   const uniqCompanies = getUniqueValues(companies);
   const uniqCategories = getUniqueValues(categories);
   const uniqColors = getUniqueValues(colors);
-  console.log(uniqCategories, uniqColors, uniqCompanies)
+  console.log(uniqCategories, uniqColors, uniqCompanies);
+  //get max price of item
+  const prices = products.map(item => item.price);
+  const maxPrice = Math.max(...prices);
+  console.log(maxPrice)
   return <Wrapper>
     <div className="content">
       <form>
         <div className="form-control">
-          <input type="text" name='text' id='text' placeholder='search' className='search-input' />
+          <input value={text} type="text" name='text' id='text' placeholder='search' className='search-input' />
         </div>
         <div className="form-control">
           <h5>category</h5>
           <div>
             {uniqCategories.map((item, index) => {
               return (
-                <button key={index} type='button' name='category'>{item}</button>
+                <button value={item} key={index} type='button' name='category'>{item}</button>
               )
             })}
           </div>
@@ -45,20 +48,27 @@ const ProductsFilter = () => {
           <h5>colors</h5>
           <div className="colors">
             {uniqColors.map((color, index) => {
-              return (
-                <button key={index} name='color' className='color-btn' data-color={color} style={{ background: `${color}` }}></button>
-              )
+              if (color === 'all') {
+                return (
+                  <button name='color' data-color='all' className='all-btn'>all</button>
+                )
+              } else {
+                return (
+                  <button key={index} name='color' className='color-btn' data-color={color} style={{ background: `${color}` }}></button>
+                )
+              }
+
             })}
           </div>
         </div>
         <div className="form-control">
           <h5>price</h5>
-          <p className="price">$545454</p>
-          <input type="range" name='price' min='0' max='309999' />
+          <p className="price">{formatPrice(maxPrice)}</p>
+          <input value={price} type="range" name='price' min='0' max={formatPrice(maxPrice)} />
         </div>
         <div className="form-control shipping">
           <label htmlFor="shipping">Free shipping</label>
-          <input type="checkbox" name='shipping' id='shipping' />
+          <input value={shipping} type="checkbox" name='shipping' id='shipping' />
         </div>
       </form>
     </div>
