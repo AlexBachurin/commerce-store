@@ -85,7 +85,6 @@ const filters_reducer = (state, action) => {
                     return item;
                 }
             })
-            console.log(tmpProducts)
         }
         //price 
         if (price) {
