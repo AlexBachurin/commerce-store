@@ -1,6 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
+import { getUniqueValues } from '../utils.js/helpers';
+import { useFiltersContext } from '../contexts/filters_context';
 const ProductsFilter = () => {
+  const { filtered_products, products } = useFiltersContext();
+  console.log(filtered_products);
+  //get companies, categories, colors from all products
+  const companies = products.map(item => item.company);
+  const categories = products.map(item => item.category);
+  //also flatten array of colors since it will be array of arrays
+  const colors = products.map(item => item.colors).flat();
+  //now get unique values from each
+  const uniqCompanies = getUniqueValues(companies);
+  const uniqCategories = getUniqueValues(categories);
+  const uniqColors = getUniqueValues(colors);
+  console.log(uniqCategories, uniqColors, uniqCompanies)
   return <Wrapper>
     <div className="content">
       <form>
@@ -10,19 +24,31 @@ const ProductsFilter = () => {
         <div className="form-control">
           <h5>category</h5>
           <div>
-
+            {uniqCategories.map((item, index) => {
+              return (
+                <button key={index} type='button' name='category'>{item}</button>
+              )
+            })}
           </div>
         </div>
         <div className="form-control">
           <h5>company</h5>
           <select name="company" id="company">
-
+            {uniqCompanies.map((item, index) => {
+              return (
+                <option key={index} value={item}>{item}</option>
+              )
+            })}
           </select>
         </div>
         <div className="form-control">
           <h5>colors</h5>
           <div className="colors">
-
+            {uniqColors.map((color, index) => {
+              return (
+                <button key={index} name='color' className='color-btn' data-color={color} style={{ background: `${color}` }}></button>
+              )
+            })}
           </div>
         </div>
         <div className="form-control">

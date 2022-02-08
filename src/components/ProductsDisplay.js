@@ -4,7 +4,7 @@ import { useFiltersContext } from '../contexts/filters_context';
 const ProductsDisplay = () => {
     //get products to display from filters context
     const { filtered_products: products, grid_view, products_loading } = useFiltersContext();
-    console.log(products)
+
     if (products_loading) {
         return <Loading />
     }
