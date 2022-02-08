@@ -67,7 +67,7 @@ const ProductsFilter = () => {
         </div>
         <div className="form-control shipping">
           <label htmlFor="shipping">Free shipping</label>
-          <input onClick={updateFilters} type="checkbox" name='shipping' id='shipping' />
+          <input onChange={updateFilters} type="checkbox" name='shipping' id='shipping' />
         </div>
       </form>
     </div>
