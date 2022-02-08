@@ -1,7 +1,42 @@
 import React from 'react';
 import styled from 'styled-components';
 const ProductsFilter = () => {
-    return <div>filter comp</div>;
+  return <Wrapper>
+    <div className="content">
+      <form>
+        <div className="form-control">
+          <input type="text" name='text' id='text' placeholder='search' className='search-input' />
+        </div>
+        <div className="form-control">
+          <h5>category</h5>
+          <div>
+
+          </div>
+        </div>
+        <div className="form-control">
+          <h5>company</h5>
+          <select name="company" id="company">
+
+          </select>
+        </div>
+        <div className="form-control">
+          <h5>colors</h5>
+          <div className="colors">
+
+          </div>
+        </div>
+        <div className="form-control">
+          <h5>price</h5>
+          <p className="price">$545454</p>
+          <input type="range" name='price' min='0' max='309999' />
+        </div>
+        <div className="form-control shipping">
+          <label htmlFor="shipping">Free shipping</label>
+          <input type="checkbox" name='shipping' id='shipping' />
+        </div>
+      </form>
+    </div>
+  </Wrapper>;
 };
 
 const Wrapper = styled.section`

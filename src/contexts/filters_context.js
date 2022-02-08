@@ -8,7 +8,17 @@ const initial_state = {
     products: [],
     filtered_products: [],
     grid_view: true,
-    sort: 'price-lowest'
+    sort: 'price-lowest',
+    filters: {
+        text: '',
+        category: '',
+        company: '',
+        colors: [],
+        price: 0,
+        max_price: 0,
+        min_price: 0,
+        shipping: false
+    }
 }
 
 export const FilterProvider = ({ children }) => {
@@ -18,6 +28,7 @@ export const FilterProvider = ({ children }) => {
     // load them every time we change products arr in products state
     useEffect(() => {
         dispatch({ type: LOAD_PRODUCTS, payload: products })
+        //also sort products on initial load, default sort we can change in state
         dispatch({ type: SORT_PRODUCTS, payload: state.sort })
         console.log(state.products)
     }, [products])
