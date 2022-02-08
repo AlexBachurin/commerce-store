@@ -73,11 +73,30 @@ const filters_reducer = (state, action) => {
                 return item.company === company;
             })
         }
-        //color 
+        //color
+        if (color !== 'all') {
+            //we need to use find method since colors property is array in each object
+            //first filter through initial array
+            tmpProducts = tmpProducts.filter(item => {
+                //then use find method to find right color in each array of colors we getting back with each iteration, 
+                // if color exists in this subarray then return this item
+                const itemColor = item.colors.find(c => c === color);
+                if (itemColor) {
+                    return item;
+                }
+            })
+            console.log(tmpProducts)
+        }
         //price 
         if (price) {
             tmpProducts = tmpProducts.filter(item => {
                 return item.price < price;
+            })
+        }
+        //shipping 
+        if (shipping) {
+            tmpProducts = tmpProducts.filter(item => {
+                return item.shipping === true;
             })
         }
         //and after filtering we set it to filtered_products to state

@@ -59,7 +59,7 @@ export const FilterProvider = ({ children }) => {
     const updateFilters = (e) => {
         const name = e.target.name;
         let value = e.target.value;
-        console.log(name, value);
+        // console.log(name, value);
         //for color
         if (name === 'color') {
             value = e.target.dataset.color;
