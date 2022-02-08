@@ -50,9 +50,19 @@ const filters_reducer = (state, action) => {
         //reset filters to initial state
         return { ...state, filters: { text: '', category: 'all', company: 'all', color: 'all', price: maxPrice, shipping: false } }
     }
-    // if (action.type === FILTER_PRODUCTS) {
-    //     console.log(action.payload)
-    // }
+    if (action.type === FILTER_PRODUCTS) {
+        //create a copy of an array to prevent mutations + if we filtering we allways need original data
+        let tmpProducts = [...state.products];
+        const { text, company, category, color, price, shipping } = state.filters;
+        //filtering
+        if (text) {
+            tmpProducts = tmpProducts.filter(item => {
+                return item.name.startsWith(text);
+            })
+        }
+        //and after filtering we set it to filtered_products to state
+        return { ...state, filtered_products: [...tmpProducts] };
+    }
     throw new Error('no matching action type')
 
 }
