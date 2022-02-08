@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { formatPrice, getUniqueValues } from '../utils.js/helpers';
 import { useFiltersContext } from '../contexts/filters_context';
+import { FaCheck } from 'react-icons/fa';
 const ProductsFilter = () => {
   const { filters: { text, category, company, color, price, shipping, max_price, min_price }, products, updateFilters } = useFiltersContext();
   //get companies, categories, colors from all products
@@ -24,7 +25,7 @@ const ProductsFilter = () => {
           <div>
             {uniqCategories.map((item, index) => {
               return (
-                <button onClick={updateFilters} value={item} key={index} type='button' name='category'>{item}</button>
+                <button className={item === category ? 'active' : null} onClick={updateFilters} value={item} key={index} type='button' name='category'>{item}</button>
               )
             })}
           </div>
@@ -42,14 +43,17 @@ const ProductsFilter = () => {
         <div className="form-control">
           <h5>colors</h5>
           <div className="colors">
-            {uniqColors.map((color, index) => {
-              if (color === 'all') {
+            {uniqColors.map((itemColor, index) => {
+              if (itemColor === 'all') {
                 return (
-                  <button onClick={updateFilters} name='color' data-color='all' className='all-btn'>all</button>
+                  <button onClick={updateFilters} name='color' data-color='all' className={itemColor === color ? 'all-btn active' : 'all-btn'}>all</button>
                 )
               } else {
                 return (
-                  <button onClick={updateFilters} key={index} name='color' className='color-btn' data-color={color} style={{ background: `${color}` }}></button>
+                  <button onClick={updateFilters} key={index} name='color' className={itemColor === color ? 'color-btn active' : 'color-btn'}
+                    data-color={itemColor} style={{ background: `${itemColor}` }}>
+                    {itemColor === color ? <FaCheck /> : null}
+                  </button>
                 )
               }
 
