@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useContext, useReducer } from "react";
-import { LOAD_PRODUCTS, SET_GRIDVIEW, SET_LISTVIEW } from "../actions";
+import React, { useEffect, useContext, useReducer } from "react";
+import { LOAD_PRODUCTS, SET_GRIDVIEW, SET_LISTVIEW, UPDATE_SORT } from "../actions";
 
 import filters_reducer from "../reducers/filters_reducer";
 import { useProductsContext } from "./products_context";
@@ -8,6 +8,7 @@ const initial_state = {
     products: [],
     filtered_products: [],
     grid_view: true,
+    sort: 'price-lowest'
 }
 
 export const FilterProvider = ({ children }) => {
@@ -27,11 +28,23 @@ export const FilterProvider = ({ children }) => {
     const setListView = () => {
         dispatch({ type: SET_LISTVIEW })
     }
+    //UPDATE SORT
+    const updateSort = (e) => {
+        // const name = e.target.name;
+        //get value from clicked select element and dispatch 
+        //action to update sort with clicked value
+        const value = e.target.value;
+        console.log(value)
+        dispatch({ type: UPDATE_SORT, payload: value })
+    }
+
+
     return <FiltersContext.Provider value={{
         ...state,
         products_loading,
         setGridView,
-        setListView
+        setListView,
+        updateSort
     }}>
         {children}
     </FiltersContext.Provider>
