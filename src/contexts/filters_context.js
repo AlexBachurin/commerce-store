@@ -50,10 +50,10 @@ export const FilterProvider = ({ children }) => {
     }
     // *** SORT PRODUCTS ***
     //sort products every time we change value of  sort variable in our state
-    useEffect(() => {
-        dispatch({ type: SORT_PRODUCTS, payload: state.sort })
+    // useEffect(() => {
+    //     dispatch({ type: SORT_PRODUCTS, payload: state.sort })
 
-    }, [state.sort, products])
+    // }, [state.sort, products, state.filters])
 
     // *** UPDATE FILTERS ***
     const updateFilters = (e) => {
@@ -78,10 +78,12 @@ export const FilterProvider = ({ children }) => {
         dispatch({ type: CLEAR_FILTERS })
     }
 
-    // *** FILTER PRODUCTS ***
+    // *** FILTER PRODUCTS and SORT PRODUCTS ***
+    // do it every time sort, filters or products change
     useEffect(() => {
         dispatch({ type: FILTER_PRODUCTS })
-    }, [state.filters])
+        dispatch({ type: SORT_PRODUCTS, payload: state.sort })
+    }, [state.filters, state.sort, products])
 
     return <FiltersContext.Provider value={{
         ...state,

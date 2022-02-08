@@ -55,9 +55,29 @@ const filters_reducer = (state, action) => {
         let tmpProducts = [...state.products];
         const { text, company, category, color, price, shipping } = state.filters;
         //filtering
+        //text
         if (text) {
             tmpProducts = tmpProducts.filter(item => {
                 return item.name.startsWith(text);
+            })
+        }
+        //category
+        if (category !== 'all') {
+            tmpProducts = tmpProducts.filter(item => {
+                return item.category === category;
+            })
+        }
+        //company
+        if (company !== 'all') {
+            tmpProducts = tmpProducts.filter(item => {
+                return item.company === company;
+            })
+        }
+        //color 
+        //price 
+        if (price) {
+            tmpProducts = tmpProducts.filter(item => {
+                return item.price < price;
             })
         }
         //and after filtering we set it to filtered_products to state
