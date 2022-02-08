@@ -1,7 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
+import { BsGridFill, BsList } from 'react-icons/bs'
 const ProductsSort = () => {
-    return <div>sort component</div>;
+    return <Wrapper>
+        <div className="btn-container">
+            <button><BsGridFill /></button>
+            <button><BsList /></button>
+        </div>
+        <p>23 products Found</p>
+        <hr />
+        <form>
+            <label htmlFor="sort">sort by</label>
+            <select name="sort" id="sort" className='sort-input'>
+                <option value="price-lowest">price (lowest)</option>
+                <option value="price-highest">price (highest)</option>
+                <option value="name-A">Name (A-Z)</option>
+                <option value="name-Z">Name (Z-A)</option>
+            </select>
+        </form>
+
+    </Wrapper>;
 };
 
 const Wrapper = styled.section`
