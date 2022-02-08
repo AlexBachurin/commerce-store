@@ -13,7 +13,6 @@ const ProductsFilter = () => {
   const uniqCompanies = getUniqueValues(companies);
   const uniqCategories = getUniqueValues(categories);
   const uniqColors = getUniqueValues(colors);
-  console.log(uniqCategories, uniqColors, uniqCompanies);
   //get max price of item
   const prices = products.map(item => item.price);
   const maxPrice = Math.max(...prices);
@@ -63,8 +62,8 @@ const ProductsFilter = () => {
         </div>
         <div className="form-control">
           <h5>price</h5>
-          <p className="price">{formatPrice(maxPrice)}</p>
-          <input value={price} type="range" name='price' min='0' max={formatPrice(maxPrice)} />
+          <p className="price">{formatPrice(price)}</p>
+          <input onChange={updateFilters} value={price} type="range" name='price' min='0' max={maxPrice} />
         </div>
         <div className="form-control shipping">
           <label htmlFor="shipping">Free shipping</label>
