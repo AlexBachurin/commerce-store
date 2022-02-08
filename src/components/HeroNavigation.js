@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom';
 
 //we will accept current page name and product if we are in single product page since we wanna handle it differently
 const HeroNavigation = ({ pageName, product }) => {
-    console.log(pageName)
-    console.log(product);
     return <UpperWrapper>
         <div className="section-center">
             <h3>

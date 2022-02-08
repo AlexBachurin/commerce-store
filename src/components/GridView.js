@@ -1,7 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
-const GridView = () => {
-    return <div>grid view</div>;
+import Product from './Product';
+const GridView = ({ products }) => {
+    return <Wrapper>
+        <div className="products-container">
+            {products.map(item => {
+                return <Product {...item} />
+            })}
+        </div>
+    </Wrapper>;
 };
 const Wrapper = styled.section`
   img {
