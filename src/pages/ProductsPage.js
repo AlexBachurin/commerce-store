@@ -1,11 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
-import { HeroNavigation } from '../components';
+import { HeroNavigation, ProductsContent, ProductsDisplay, ProductsFilter, ProductsSort } from '../components';
 
 const ProductsPage = () => {
-    return <Wrapper>
-        <HeroNavigation pageName={'products'} />
+  return <main>
+    <HeroNavigation pageName={'products'} />
+    <Wrapper className='page'>
+      <div className="section-center products">
+        <ProductsFilter />
+        <div>
+          <ProductsSort />
+          <ProductsDisplay />
+        </div>
+      </div>
     </Wrapper>;
+  </main>
+
 };
 
 const Wrapper = styled.div`

@@ -15,4 +15,14 @@ import ProductContent from "./ProductContent";
 import ProductStars from "./ProductStars";
 import ProductAddToCart from "./ProductAddToCart";
 import ProductAmount from "./ProductAmount";
-export { Navbar, Sidebar, PageMain, Footer, NavInteraction, HeroSection, ContactsSection, ServicesSection, FeaturedProducts, Loading, HeroNavigation, Error, ProductImages, ProductContent, ProductStars, ProductAddToCart, ProductAmount }
+import ProductsContent from "./ProductsContent";
+import ProductsFilter from "./ProductsFilter";
+import ProductsSort from "./ProductsSort";
+import ProductsDisplay from "./ProductsDisplay";
+import GridView from "./GridView";
+import ListView from "./ListView";
+export {
+    Navbar, Sidebar, PageMain, Footer, NavInteraction, HeroSection, ContactsSection, ServicesSection, FeaturedProducts, Loading,
+    HeroNavigation, Error, ProductImages, ProductContent, ProductStars, ProductAddToCart, ProductAmount, ProductsContent, ProductsDisplay, ProductsSort, ProductsFilter,
+    GridView, ListView
+}
