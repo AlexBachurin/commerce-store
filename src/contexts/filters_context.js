@@ -57,8 +57,13 @@ export const FilterProvider = ({ children }) => {
     // *** UPDATE FILTERS ***
     const updateFilters = (e) => {
         const name = e.target.name;
-        const value = e.target.value;
+        let value = e.target.value;
         console.log(name, value);
+        //for color
+        if (name === 'color') {
+            value = e.target.dataset.color;
+            console.log(value)
+        }
         dispatch({ type: UPDATE_FILTERS, payload: { name, value } })
     }
 
