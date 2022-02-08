@@ -4,6 +4,8 @@ import Product from './Product';
 const GridView = ({ products }) => {
     return <Wrapper>
         <div className="products-container">
+            {/* //iterate through products we get from ProductsDisplay component and return Product component
+            since we have same display for item as in our featured products */}
             {products.map(item => {
                 return <Product {...item} />
             })}

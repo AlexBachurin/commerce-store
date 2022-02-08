@@ -5,7 +5,8 @@ const ProductsDisplay = () => {
     //get products to display from filters context
     const { filtered_products: products } = useFiltersContext();
     console.log(products)
-    return <GridView products={products}></GridView>;
+    // return <GridView products={products}></GridView>;
+    return <ListView products={products}></ListView>
 };
 
 export default ProductsDisplay;

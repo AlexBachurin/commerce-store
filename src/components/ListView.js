@@ -1,7 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
-const ListView = () => {
-    return <div>list view</div>;
+import { formatPrice } from '../utils.js/helpers';
+import { Link } from 'react-router-dom';
+const ListView = ({ products }) => {
+    return <Wrapper>
+        {products.map(item => {
+            const { image, name, price, description, id } = item;
+            return (
+                <article>
+                    <img src={image} alt={name} />
+                    <div>
+                        <h4>{name}</h4>
+                        <h5 className="price">{formatPrice(price)}</h5>
+                        {/* //cut out some description letters */}
+                        <p>{`${description.slice(0, 200)} ...`}</p>
+                        <Link className='btn' to={`products/${id}`}>Details</Link>
+                    </div>
+                </article>
+            )
+        })}
+    </Wrapper>;
 };
 const Wrapper = styled.section`
   display: grid;
