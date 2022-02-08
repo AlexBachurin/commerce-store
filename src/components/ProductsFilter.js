@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { formatPrice, getUniqueValues } from '../utils.js/helpers';
 import { useFiltersContext } from '../contexts/filters_context';
 const ProductsFilter = () => {
-  const { filters: { text, category, company, color, price, shipping }, products, updateFilters } = useFiltersContext();
+  const { filters: { text, category, company, color, price, shipping, max_price, min_price }, products, updateFilters } = useFiltersContext();
   //get companies, categories, colors from all products
   const companies = products.map(item => item.company);
   const categories = products.map(item => item.category);
@@ -13,10 +13,6 @@ const ProductsFilter = () => {
   const uniqCompanies = getUniqueValues(companies);
   const uniqCategories = getUniqueValues(categories);
   const uniqColors = getUniqueValues(colors);
-  //get max price of item
-  const prices = products.map(item => item.price);
-  const maxPrice = Math.max(...prices);
-  console.log(maxPrice)
   return <Wrapper>
     <div className="content">
       <form onSubmit={(e) => e.preventDefault()}>
@@ -63,7 +59,7 @@ const ProductsFilter = () => {
         <div className="form-control">
           <h5>price</h5>
           <p className="price">{formatPrice(price)}</p>
-          <input onChange={updateFilters} value={price} type="range" name='price' min='0' max={maxPrice} />
+          <input onChange={updateFilters} value={price} type="range" name='price' min={min_price} max={max_price} />
         </div>
         <div className="form-control shipping">
           <label htmlFor="shipping">Free shipping</label>

@@ -3,8 +3,11 @@ import { LOAD_PRODUCTS, SET_GRIDVIEW, SET_LISTVIEW, UPDATE_SORT, SORT_PRODUCTS, 
 
 const filters_reducer = (state, action) => {
     if (action.type === LOAD_PRODUCTS) {
+        //get max price of item
+        const prices = action.payload.map(item => item.price);
+        const maxPrice = Math.max(...prices);
         //!!! very important to spread products we pass in payload so we wont point on the same object
-        return { ...state, products: [...action.payload], filtered_products: [...action.payload] }
+        return { ...state, products: [...action.payload], filtered_products: [...action.payload], filters: { ...state.filters, max_price: maxPrice, price: maxPrice } }
     }
     if (action.type === SET_GRIDVIEW) {
         return { ...state, grid_view: true }
