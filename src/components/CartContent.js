@@ -5,7 +5,7 @@ import CartItemsList from './CartItemsList';
 import { Link } from 'react-router-dom';
 import CartTotals from './CartTotals';
 const CartContent = () => {
-    return <Wrapper>
+    return <Wrapper className='section section-center'>
         <CartColumns />
         <CartItemsList />
         <div className="link-container">
