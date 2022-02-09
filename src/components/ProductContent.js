@@ -11,7 +11,7 @@ const ProductContent = ({ product }) => {
         <p className="info"><span>Availiable: </span> {stock} </p>
         <p className="info"><span>ID: </span> {id} </p>
         <p className="info"><span>Brand: </span> {company} </p>
-        <ProductAddToCart colors={colors} stock={stock} />
+        <ProductAddToCart colors={colors} stock={stock} product={product} />
     </section>;
 };
 
