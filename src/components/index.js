@@ -21,8 +21,9 @@ import ProductsSort from "./ProductsSort";
 import ProductsDisplay from "./ProductsDisplay";
 import GridView from "./GridView";
 import ListView from "./ListView";
+import CartContent from "./CartContent";
 export {
     Navbar, Sidebar, PageMain, Footer, NavInteraction, HeroSection, ContactsSection, ServicesSection, FeaturedProducts, Loading,
     HeroNavigation, Error, ProductImages, ProductContent, ProductStars, ProductAddToCart, ProductAmount, ProductsContent, ProductsDisplay, ProductsSort, ProductsFilter,
-    GridView, ListView
+    GridView, ListView, CartContent
 }
