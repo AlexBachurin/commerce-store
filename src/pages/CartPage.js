@@ -2,10 +2,12 @@ import React from 'react';
 import styled from 'styled-components'
 import { CartContent, HeroNavigation } from '../components'
 const CartPage = () => {
-    return <Wrapper>
+    return <main>
         <HeroNavigation pageName={'cart'} />
-        <CartContent />
-    </Wrapper>;
+        <Wrapper className='page'>
+            <CartContent />
+        </Wrapper>
+    </main>;
 };
 
 const Wrapper = styled.main`
