@@ -23,7 +23,7 @@ const SingleProductPage = () => {
   const { images, name } = single_product;
   return <Wrapper>
     <HeroNavigation pageName={name} product={single_product} />
-    <div className="section section-center">
+    <div className="section section-center page">
       <Link to={'/products'} className='btn'>Back to Products</Link>
       <div className="product-center">
         <ProductImages images={images} />

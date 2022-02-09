@@ -1,28 +1,28 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 const ProductImages = ({ images }) => {
-    //state for main image to display, by default will be first image by index of 0,
-    //dont forget in in main variable will be object, not url, so we must access url as main.url
-    const [main, setMain] = useState(images[0]);
-    //change main image on click in gallery by index of image
-    const changeImage = (index) => {
-        setMain(images[index])
-    }
-    return <Wrapper>
-        <img src={main.url} alt={main.filename} />
-        <div className="gallery">
-            {images.map((img, index) => {
-                //add className to current main image, by comparing their urls, if they match it is current active image in gallery
-                let clsName = '';
-                if (img.url === main.url) {
-                    clsName = 'active'
-                }
-                return (
-                    <img onClick={() => changeImage(index)} className={clsName} key={img.id} src={img.url} alt={img.filename} />
-                )
-            })}
-        </div>
-    </Wrapper>;
+  //state for main image to display, by default will be first image by index of 0,
+  //dont forget in in main variable will be object, not url, so we must access url as main.url
+  const [main, setMain] = useState(images[0]);
+  //change main image on click in gallery by index of image
+  const changeImage = (index) => {
+    setMain(images[index])
+  }
+  return <Wrapper>
+    <img src={main.url} alt={main.filename} className='main' />
+    <div className="gallery">
+      {images.map((img, index) => {
+        //add className to current main image, by comparing their urls, if they match it is current active image in gallery
+        let clsName = '';
+        if (img.url === main.url) {
+          clsName = 'active'
+        }
+        return (
+          <img onClick={() => changeImage(index)} className={clsName} key={img.id} src={img.url} alt={img.filename} />
+        )
+      })}
+    </div>
+  </Wrapper>;
 };
 
 const Wrapper = styled.section`
