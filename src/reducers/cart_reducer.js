@@ -2,7 +2,7 @@ import { ADD_TO_CART } from "../actions";
 
 const cartReducer = (state, action) => {
     if (action.type === ADD_TO_CART) {
-        const { id, name, amount, color, price, stock } = action.payload;
+        const { id, name, amount, color, price, stock, image } = action.payload;
         let newItem = {}
         //first check if we have item with same id already in cart
         let tmpItem = state.cart.find(item => item.id === id);
@@ -16,7 +16,7 @@ const cartReducer = (state, action) => {
             return { ...state, cart: [...state.cart] }
         } else {
             //create new item if we dont have with same id in cart 
-            newItem = { id, name, amount, color, price, max: stock };
+            newItem = { id, name, amount, color, price, max: stock, image };
             return { ...state, cart: [...state.cart, newItem] };
         }
 

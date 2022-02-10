@@ -12,9 +12,9 @@ const initialState = {
 export const CartProvider = ({ children }) => {
     const [state, dispatch] = useReducer(cartReducer, initialState);
 
-    const addToCart = (id, name, amount, color, price, stock) => {
+    const addToCart = (id, name, amount, color, price, stock, image) => {
         //pass id with id of id+color, so we wont add item with same color twice as separate item
-        dispatch({ type: ADD_TO_CART, payload: { id: id + color, name, amount, color, price, stock } })
+        dispatch({ type: ADD_TO_CART, payload: { id: id + color, name, amount, color, price, stock, image } })
     }
     return <CartContext.Provider value={{
         ...state,

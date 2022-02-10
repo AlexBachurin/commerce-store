@@ -11,7 +11,7 @@ const ProductAddToCart = ({ colors, stock, product }) => {
   const [amount, setAmount] = useState(1);
   //add to cart
   const { addToCart } = useCartContext();
-  const { id, name, price } = product;
+  const { id, name, price, images } = product;
   //change amount
   const increase = () => {
     setAmount(oldAmount => {
@@ -53,7 +53,7 @@ const ProductAddToCart = ({ colors, stock, product }) => {
     </div>
     <div className="btn-container">
       <ProductAmount amount={amount} increase={increase} decrease={decrease} />
-      <Link onClick={() => addToCart(id, name, amount, activeColor, price, stock)} className='btn' to={'/cart'}>add to cart</Link>
+      <Link onClick={() => addToCart(id, name, amount, activeColor, price, stock, images[0].url)} className='btn' to={'/cart'}>add to cart</Link>
     </div>
   </Wrapper>;
 };
