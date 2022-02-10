@@ -1,4 +1,4 @@
-import { ADD_TO_CART } from "../actions";
+import { ADD_TO_CART, REMOVE_CART_ITEM } from "../actions";
 
 const cartReducer = (state, action) => {
     if (action.type === ADD_TO_CART) {
@@ -19,8 +19,14 @@ const cartReducer = (state, action) => {
             newItem = { id, name, amount, color, price, max: stock, image };
             return { ...state, cart: [...state.cart, newItem] };
         }
-
-
+    }
+    if (action.type === REMOVE_CART_ITEM) {
+        const id = action.payload;
+        //first copy cart arr to prevent bugs/mutation
+        let tmpCart = [...state.cart];
+        //remove item by id
+        tmpCart = tmpCart.filter(item => item.id !== id);
+        return { ...state, cart: [...tmpCart] }
     }
 
 }

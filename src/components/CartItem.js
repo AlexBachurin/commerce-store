@@ -3,7 +3,9 @@ import { FaTrash } from 'react-icons/fa';
 import styled from 'styled-components';
 import { ProductAmount } from '.';
 import { formatPrice } from '../utils.js/helpers';
-const CartItem = ({ id, amount, price, color, name, image }) => {
+import { useCartContext } from '../contexts/cart_context';
+const CartItem = ({ id, amount, price, color, name, image, max }) => {
+    const { removeItemFromCart } = useCartContext();
     return <Wrapper>
         <div className="title">
             <img src={image} alt={name} />
@@ -24,7 +26,7 @@ const CartItem = ({ id, amount, price, color, name, image }) => {
         <ProductAmount amount={amount} />
         {/* //in subtotal we calculate total price amount*price */}
         <h5 className="subtotal">{formatPrice(amount * price)}</h5>
-        <button className="remove-btn">
+        <button onClick={() => removeItemFromCart(id)} className="remove-btn">
             <FaTrash />
         </button>
     </Wrapper>;
