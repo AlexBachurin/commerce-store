@@ -1,4 +1,4 @@
-import { ADD_TO_CART, REMOVE_CART_ITEM, TOGGLE_CART_ITEM_AMOUNT } from "../actions";
+import { ADD_TO_CART, CLEAR_CART, REMOVE_CART_ITEM, TOGGLE_CART_ITEM_AMOUNT } from "../actions";
 
 const cartReducer = (state, action) => {
     if (action.type === ADD_TO_CART) {
@@ -56,6 +56,9 @@ const cartReducer = (state, action) => {
         })
 
         return { ...state, cart: [...tmpCart] };
+    }
+    if (action.type === CLEAR_CART) {
+        return { ...state, cart: [] }
     }
 
 }

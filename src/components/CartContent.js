@@ -4,16 +4,18 @@ import CartColumns from './CartColumns';
 import CartItemsList from './CartItemsList';
 import { Link } from 'react-router-dom';
 import CartTotals from './CartTotals';
+import { useCartContext } from '../contexts/cart_context';
 const CartContent = () => {
-    return <Wrapper className='section section-center'>
-        <CartColumns />
-        <CartItemsList />
-        <div className="link-container">
-            <Link className='link-btn' to='/products'>continue shopping</Link>
-            <button type='button' className='link-btn clear-btn'>clear cart</button>
-        </div>
-        <CartTotals />
-    </Wrapper>;
+  const { clearCart } = useCartContext();
+  return <Wrapper className='section section-center'>
+    <CartColumns />
+    <CartItemsList />
+    <div className="link-container">
+      <Link className='link-btn' to='/products'>continue shopping</Link>
+      <button onClick={clearCart} type='button' className='link-btn clear-btn'>clear cart</button>
+    </div>
+    <CartTotals />
+  </Wrapper>;
 };
 
 const Wrapper = styled.section`

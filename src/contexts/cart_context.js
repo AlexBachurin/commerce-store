@@ -1,5 +1,5 @@
 import React, { useContext, useReducer } from "react";
-import { ADD_TO_CART, REMOVE_CART_ITEM, TOGGLE_CART_ITEM_AMOUNT } from "../actions";
+import { ADD_TO_CART, CLEAR_CART, REMOVE_CART_ITEM, TOGGLE_CART_ITEM_AMOUNT } from "../actions";
 import cartReducer from '../reducers/cart_reducer'
 const CartContext = React.createContext();
 
@@ -27,11 +27,17 @@ export const CartProvider = ({ children }) => {
     const toggleAmount = (id, operation) => {
         dispatch({ type: TOGGLE_CART_ITEM_AMOUNT, payload: { id, operation } })
     }
+
+    // *** CLEAR ALL CART ***
+    const clearCart = () => {
+        dispatch({ type: CLEAR_CART })
+    }
     return <CartContext.Provider value={{
         ...state,
         addToCart,
         removeItemFromCart,
-        toggleAmount
+        toggleAmount,
+        clearCart
 
     }}>
         {children}
