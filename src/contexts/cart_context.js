@@ -1,10 +1,18 @@
 import React, { useContext, useReducer, useEffect } from "react";
 import { ADD_TO_CART, CLEAR_CART, COUNT_CART_TOTALS, REMOVE_CART_ITEM, TOGGLE_CART_ITEM_AMOUNT } from "../actions";
-import cartReducer from '../reducers/cart_reducer'
+import cartReducer from '../reducers/cart_reducer';
+//local storage
+const getLocalStorage = () => {
+    const cart = localStorage.getItem('cart');
+    if (cart) {
+        return JSON.parse(cart);
+    }
+    return [];
+}
 const CartContext = React.createContext();
 
 const initialState = {
-    cart: [],
+    cart: getLocalStorage(),
     total_amount: 0,
     total_price: 0,
     shipping_fee: 534
@@ -36,6 +44,7 @@ export const CartProvider = ({ children }) => {
     // *** GET TOTAL AMOUNT OF ITEMS IN CART + TOTAL PRICE ***
     // every time state of cart changes, get total amounts
     useEffect(() => {
+        localStorage.setItem('cart', JSON.stringify(state.cart))
         dispatch({ type: COUNT_CART_TOTALS })
     }, [state.cart])
     return <CartContext.Provider value={{
