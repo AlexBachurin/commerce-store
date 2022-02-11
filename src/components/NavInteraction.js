@@ -3,14 +3,16 @@ import styled from 'styled-components';
 import { AiOutlineShoppingCart, AiOutlineUser } from 'react-icons/ai'
 import { Link } from 'react-router-dom';
 import { useProductsContext } from '../contexts/products_context';
+import { useCartContext } from '../contexts/cart_context';
 const NavInteraction = () => {
   const { closeSidebar } = useProductsContext();
+  const { total_amount } = useCartContext();
   return <Wrapper className='cart-btn-wrapper'>
     <Link onClick={closeSidebar} className='cart-btn' to={'/cart'}>
       Cart
       <span className='cart-container'>
         <AiOutlineShoppingCart />
-        <span className='cart-value'>5</span>
+        <span className='cart-value'>{total_amount}</span>
       </span>
     </Link>
     <button className="auth-btn">
