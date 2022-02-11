@@ -6,7 +6,8 @@ const CartContext = React.createContext();
 const initialState = {
     cart: [],
     total_amount: 0,
-    total_price: 0
+    total_price: 0,
+    shipping_fee: 534
 }
 
 export const CartProvider = ({ children }) => {

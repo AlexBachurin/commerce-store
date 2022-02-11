@@ -1,12 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useCartContext } from '../contexts/cart_context';
+import { formatPrice } from '../utils.js/helpers';
 const CartTotals = () => {
+    const { total_price, shipping_fee } = useCartContext();
     return <Wrapper>
         <div>
             <article>
-                <h5>subtotal: <span></span></h5>
-                <p>Shipping fee: <span>$5.34</span></p>
-                <h4>Order total: <span></span></h4>
+                <h5>subtotal: <span>{formatPrice(total_price)}</span></h5>
+                <p>Shipping fee: <span>{formatPrice(shipping_fee)}</span></p>
+                <h4>Order total: <span>{formatPrice(total_price + shipping_fee)}</span></h4>
             </article>
             <button className='btn'>Login</button>
         </div>
