@@ -51,10 +51,15 @@ const ProductAddToCart = ({ colors, stock, product }) => {
         })}
       </div>
     </div>
-    <div className="btn-container">
-      <ProductAmount amount={amount} increase={increase} decrease={decrease} />
-      <Link onClick={() => addToCart(id, name, amount, activeColor, price, stock, images[0].url)} className='btn' to={'/cart'}>add to cart</Link>
-    </div>
+    {/* //if item stock is 0, show that item out of stock, if not show add to cart button */}
+    {stock === 0 ? <>
+      <h2 className='stock-zero'>Out of stock</h2>
+      <button disabled={true} className='btn disabled-btn'>add to cart</button>
+    </>
+      : <div className="btn-container">
+        <ProductAmount amount={amount} increase={increase} decrease={decrease} />
+        <Link onClick={() => addToCart(id, name, amount, activeColor, price, stock, images[0].url)} className='btn' to={'/cart'}>add to cart</Link>
+      </div>}
   </Wrapper>;
 };
 
@@ -100,6 +105,15 @@ const Wrapper = styled.section`
   .btn {
     margin-top: 1rem;
     width: 140px;
+  }
+  .stock-zero {
+    padding-top: 10px;
+    font-size: 30px;
+  }
+  .disabled-btn {
+    background : initial;
+    color: initial;
+    cursor: not-allowed;
   }
 `
 
