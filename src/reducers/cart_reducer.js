@@ -1,4 +1,4 @@
-import { ADD_TO_CART, REMOVE_CART_ITEM } from "../actions";
+import { ADD_TO_CART, REMOVE_CART_ITEM, TOGGLE_CART_ITEM_AMOUNT } from "../actions";
 
 const cartReducer = (state, action) => {
     if (action.type === ADD_TO_CART) {
@@ -27,6 +27,35 @@ const cartReducer = (state, action) => {
         //remove item by id
         tmpCart = tmpCart.filter(item => item.id !== id);
         return { ...state, cart: [...tmpCart] }
+    }
+    if (action.type === TOGGLE_CART_ITEM_AMOUNT) {
+        const { id, operation } = action.payload;
+        const tmpCart = state.cart.map(item => {
+            //find item in cart by id to do provided operation with amount
+            if (item.id === id) {
+                if (operation === 'inc') {
+                    let newAmount = item.amount + 1;
+                    //also check max property of item to not exceed stock value
+                    if (newAmount > item.max) {
+                        newAmount = item.max;
+                    }
+                    //spread item and change amount to new one
+                    return { ...item, amount: newAmount }
+                }
+                if (operation === 'dec') {
+                    let newAmount = item.amount - 1;
+                    //check to not go below 1
+                    if (newAmount < 1) {
+                        newAmount = 1;
+                    }
+                    return { ...item, amount: newAmount }
+                }
+            }
+
+            return item;
+        })
+
+        return { ...state, cart: [...tmpCart] };
     }
 
 }

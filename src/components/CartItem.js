@@ -5,31 +5,42 @@ import { ProductAmount } from '.';
 import { formatPrice } from '../utils.js/helpers';
 import { useCartContext } from '../contexts/cart_context';
 const CartItem = ({ id, amount, price, color, name, image, max }) => {
-    const { removeItemFromCart } = useCartContext();
-    return <Wrapper>
-        <div className="title">
-            <img src={image} alt={name} />
-            <div>
-                <h5 className='name'>{name}</h5>
-                <p className="color">
-                    color: <span style={{ background: `${color}` }}></span>
-                </p>
-                {/* //price for mobile */}
-                <h5 className="price-small">
-                    {formatPrice(price)}
-                </h5>
-            </div>
-        </div>
-        <h5 className="price">
-            {formatPrice(price)}
+  const { removeItemFromCart, toggleAmount } = useCartContext();
+  //increase  amount
+  const increase = () => {
+    console.log('plus');
+    toggleAmount(id, 'inc')
+  }
+  //decrease amount
+  const decrease = () => {
+    console.log('minus')
+    toggleAmount(id, 'dec');
+  }
+  return <Wrapper>
+    <div className="title">
+      <img src={image} alt={name} />
+      <div>
+        <h5 className='name'>{name}</h5>
+        <p className="color">
+          color: <span style={{ background: `${color}` }}></span>
+        </p>
+        {/* //price for mobile */}
+        <h5 className="price-small">
+          {formatPrice(price)}
         </h5>
-        <ProductAmount amount={amount} />
-        {/* //in subtotal we calculate total price amount*price */}
-        <h5 className="subtotal">{formatPrice(amount * price)}</h5>
-        <button onClick={() => removeItemFromCart(id)} className="remove-btn">
-            <FaTrash />
-        </button>
-    </Wrapper>;
+      </div>
+    </div>
+    <h5 className="price">
+      {formatPrice(price)}
+    </h5>
+    {/* //pass increase/decrease here */}
+    <ProductAmount amount={amount} increase={increase} decrease={decrease} />
+    {/* //in subtotal we calculate total price amount*price */}
+    <h5 className="subtotal">{formatPrice(amount * price)}</h5>
+    <button onClick={() => removeItemFromCart(id)} className="remove-btn">
+      <FaTrash />
+    </button>
+  </Wrapper>;
 };
 
 const Wrapper = styled.article`
