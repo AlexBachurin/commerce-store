@@ -1,4 +1,4 @@
-import { ADD_TO_CART, CLEAR_CART, REMOVE_CART_ITEM, TOGGLE_CART_ITEM_AMOUNT } from "../actions";
+import { ADD_TO_CART, CLEAR_CART, COUNT_CART_TOTALS, REMOVE_CART_ITEM, TOGGLE_CART_ITEM_AMOUNT } from "../actions";
 
 const cartReducer = (state, action) => {
     if (action.type === ADD_TO_CART) {
@@ -59,6 +59,26 @@ const cartReducer = (state, action) => {
     }
     if (action.type === CLEAR_CART) {
         return { ...state, cart: [] }
+    }
+    if (action.type === COUNT_CART_TOTALS) {
+        //functionality to get total and amount
+        let { total, amount } = state.cart.reduce(
+            (cartTotal, cartItem) => {
+                const { price, amount } = cartItem
+                const itemTotal = price * amount
+
+                cartTotal.total += itemTotal
+                cartTotal.amount += amount
+                return cartTotal
+            },
+            {
+                total: 0,
+                amount: 0,
+            }
+        )
+        total = parseFloat(total.toFixed(2))
+
+        return { ...state, total_price: total, total_amount: amount }
     }
 
 }

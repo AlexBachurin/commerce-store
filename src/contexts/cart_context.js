@@ -1,5 +1,5 @@
-import React, { useContext, useReducer } from "react";
-import { ADD_TO_CART, CLEAR_CART, REMOVE_CART_ITEM, TOGGLE_CART_ITEM_AMOUNT } from "../actions";
+import React, { useContext, useReducer, useEffect } from "react";
+import { ADD_TO_CART, CLEAR_CART, COUNT_CART_TOTALS, REMOVE_CART_ITEM, TOGGLE_CART_ITEM_AMOUNT } from "../actions";
 import cartReducer from '../reducers/cart_reducer'
 const CartContext = React.createContext();
 
@@ -32,6 +32,11 @@ export const CartProvider = ({ children }) => {
     const clearCart = () => {
         dispatch({ type: CLEAR_CART })
     }
+    // *** GET TOTAL AMOUNT OF ITEMS IN CART + TOTAL PRICE ***
+    // every time state of cart changes, get total amounts
+    useEffect(() => {
+        dispatch({ type: COUNT_CART_TOTALS })
+    }, [state.cart])
     return <CartContext.Provider value={{
         ...state,
         addToCart,
