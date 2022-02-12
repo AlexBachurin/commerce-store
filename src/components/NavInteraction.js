@@ -8,7 +8,9 @@ import { useAuth0 } from '@auth0/auth0-react';
 const NavInteraction = () => {
   const { closeSidebar } = useProductsContext();
   const { total_amount } = useCartContext();
-  const { loginWithRedirect } = useAuth0();
+  const { loginWithRedirect, isAuthenticated, user, logout } = useAuth0();
+  console.log(isAuthenticated, user)
+  const isUser = isAuthenticated && user;
   return <Wrapper className='cart-btn-wrapper'>
     <Link onClick={closeSidebar} className='cart-btn' to={'/cart'}>
       Cart
@@ -17,10 +19,18 @@ const NavInteraction = () => {
         <span className='cart-value'>{total_amount}</span>
       </span>
     </Link>
-    <button onClick={() => loginWithRedirect()} className="auth-btn">
-      Login
-      <AiOutlineUser />
-    </button>
+    {/* //if logged in, show logout button else show login button */}
+    {isUser ?
+      <button onClick={() => logout({ returnTo: window.location.origin })} className="auth-btn">
+        Logout
+        <AiOutlineUser />
+      </button>
+      :
+      <button onClick={() => loginWithRedirect()} className="auth-btn">
+        Login
+        <AiOutlineUser />
+      </button>
+    }
   </Wrapper>;
 };
 
