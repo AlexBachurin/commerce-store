@@ -30,7 +30,7 @@ export const FilterProvider = ({ children }) => {
         dispatch({ type: LOAD_PRODUCTS, payload: products })
         //also sort products on initial load, default sort we can change in state
         dispatch({ type: SORT_PRODUCTS, payload: state.sort })
-        console.log(state.products)
+        // eslint-disable-next-line
     }, [products])
 
     // *** SET GRID VIEW / LIST VIEW ***
@@ -63,12 +63,10 @@ export const FilterProvider = ({ children }) => {
         //for color
         if (name === 'color') {
             value = e.target.dataset.color;
-            console.log(value)
         }
         //for shipping we checking if checked or not
         if (name === 'shipping') {
             value = e.target.checked;
-            console.log(value)
         }
         dispatch({ type: UPDATE_FILTERS, payload: { name, value } })
     }

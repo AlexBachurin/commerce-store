@@ -4,9 +4,11 @@ import { AiOutlineShoppingCart, AiOutlineUser } from 'react-icons/ai'
 import { Link } from 'react-router-dom';
 import { useProductsContext } from '../contexts/products_context';
 import { useCartContext } from '../contexts/cart_context';
+import { useAuth0 } from '@auth0/auth0-react';
 const NavInteraction = () => {
   const { closeSidebar } = useProductsContext();
   const { total_amount } = useCartContext();
+  const { loginWithRedirect } = useAuth0();
   return <Wrapper className='cart-btn-wrapper'>
     <Link onClick={closeSidebar} className='cart-btn' to={'/cart'}>
       Cart
@@ -15,7 +17,7 @@ const NavInteraction = () => {
         <span className='cart-value'>{total_amount}</span>
       </span>
     </Link>
-    <button className="auth-btn">
+    <button onClick={() => loginWithRedirect()} className="auth-btn">
       Login
       <AiOutlineUser />
     </button>
