@@ -1,19 +1,24 @@
+import { useAuth0 } from '@auth0/auth0-react';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { useCartContext } from '../contexts/cart_context';
 import { formatPrice } from '../utils.js/helpers';
 const CartTotals = () => {
-    const { total_price, shipping_fee } = useCartContext();
-    return <Wrapper>
-        <div>
-            <article>
-                <h5>subtotal: <span>{formatPrice(total_price)}</span></h5>
-                <p>Shipping fee: <span>{formatPrice(shipping_fee)}</span></p>
-                <h4>Order total: <span>{formatPrice(total_price + shipping_fee)}</span></h4>
-            </article>
-            <button className='btn'>Login</button>
-        </div>
-    </Wrapper>;
+  const { total_price, shipping_fee } = useCartContext();
+  const { loginWithRedirect, isAuthenticated, user } = useAuth0();
+  const isUser = isAuthenticated && user;
+  return <Wrapper>
+    <div>
+      <article>
+        <h5>subtotal: <span>{formatPrice(total_price)}</span></h5>
+        <p>Shipping fee: <span>{formatPrice(shipping_fee)}</span></p>
+        <h4>Order total: <span>{formatPrice(total_price + shipping_fee)}</span></h4>
+      </article>
+      {/* //if authenticated and user exists show checkout button, else show login button */}
+      {isUser ? <Link className='btn' to={'/checkout'}>Checkout</Link> : <button onClick={() => loginWithRedirect()} className='btn'>Login</button>}
+    </div>
+  </Wrapper>;
 };
 
 const Wrapper = styled.section`
