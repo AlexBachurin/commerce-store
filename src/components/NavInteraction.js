@@ -23,7 +23,7 @@ const NavInteraction = () => {
     {isUser ?
       <button onClick={() => logout({ returnTo: window.location.origin })} className="auth-btn">
         Logout
-        <AiOutlineUser />
+        <img className='user-img' src={user.picture} alt={user.name} />
       </button>
       :
       <button onClick={() => loginWithRedirect()} className="auth-btn">
@@ -83,6 +83,13 @@ const Wrapper = styled.div`
     svg {
       margin-left: 5px;
     }
+  }
+  .user-img {
+    width: 100%;
+    height: 40px;
+    border-radius: 20px;
+    margin-left: 10px;
+    object-fit: cover;
   }
 `
 
