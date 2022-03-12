@@ -1,8 +1,8 @@
-import { useAuth0 } from "@auth0/auth0-react";
+
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { Footer, Navbar, Sidebar } from "./components";
-import { HomePage, AboutPage, ProductsPage, SingleProductPage, CartPage, ErrorPage, CheckoutPage, AuthWrapper, RequireAuth } from './pages';
+import { HomePage, AboutPage, ProductsPage, SingleProductPage, CartPage, ErrorPage, CheckoutPage, RequireAuth } from './pages';
 function App() {
   return (
     // <AuthWrapper>

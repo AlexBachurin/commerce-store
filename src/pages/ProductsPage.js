@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { HeroNavigation, ProductsContent, ProductsDisplay, ProductsFilter, ProductsSort } from '../components';
+import { HeroNavigation, ProductsDisplay, ProductsFilter, ProductsSort } from '../components';
 
 const ProductsPage = () => {
   return <main>

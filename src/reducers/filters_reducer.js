@@ -77,6 +77,7 @@ const filters_reducer = (state, action) => {
         if (color !== 'all') {
             //we need to use find method since colors property is array in each object
             //first filter through initial array
+            // eslint-disable-next-line
             tmpProducts = tmpProducts.filter(item => {
                 //then use find method to find right color in each array of colors we getting back with each iteration, 
                 // if color exists in this subarray then return this item
