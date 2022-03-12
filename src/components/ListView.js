@@ -3,23 +3,23 @@ import styled from 'styled-components';
 import { formatPrice } from '../utils.js/helpers';
 import { Link } from 'react-router-dom';
 const ListView = ({ products }) => {
-    return <Wrapper>
-        {products.map(item => {
-            const { image, name, price, description, id } = item;
-            return (
-                <article key={id}>
-                    <img src={image} alt={name} />
-                    <div>
-                        <h4>{name}</h4>
-                        <h5 className="price">{formatPrice(price)}</h5>
-                        {/* //cut out some description letters */}
-                        <p>{`${description.slice(0, 200)} ...`}</p>
-                        <Link className='btn' to={`products/${id}`}>Details</Link>
-                    </div>
-                </article>
-            )
-        })}
-    </Wrapper>;
+  return <Wrapper>
+    {products.map(item => {
+      const { image, name, price, description, id } = item;
+      return (
+        <article key={id}>
+          <img src={image} alt={name} />
+          <div>
+            <h4>{name}</h4>
+            <h5 className="price">{formatPrice(price)}</h5>
+            {/* //cut out some description letters */}
+            <p>{`${description.slice(0, 200)} ...`}</p>
+            <Link className='btn' to={`${id}`}>Details</Link>
+          </div>
+        </article>
+      )
+    })}
+  </Wrapper>;
 };
 const Wrapper = styled.section`
   display: grid;
