@@ -5,8 +5,10 @@ import { GiHamburgerMenu } from 'react-icons/gi'
 import { links } from '../utils.js/constants';
 import { NavInteraction } from '.';
 import { useProductsContext } from '../contexts/products_context';
+import { useAuth0 } from '@auth0/auth0-react';
 const Navbar = () => {
   const { openSidebar } = useProductsContext();
+  const { isAuthenticated, user } = useAuth0();
   return <NavContainer>
     <div className="nav-center">
       <div className="nav-header">
@@ -18,6 +20,17 @@ const Navbar = () => {
       <ul className="nav-links">
         {links.map(link => {
           const { id, url, text } = link;
+          // eslint-disable-next-line
+          {/* //only show checkout link if user is logged in */ }
+          if (text === 'checkout') {
+            if (isAuthenticated && user) {
+              return <li key={id}>
+                <Link to={url}>{text}</Link>
+              </li>
+            } else {
+              return null;
+            }
+          }
           return (
             <li key={id}>
               <Link to={url}>{text}</Link>
