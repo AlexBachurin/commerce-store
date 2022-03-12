@@ -20,7 +20,7 @@ const CheckoutPage = () => {
             </EmptyWrapper>
             :
             <Wrapper className='page'>
-                <h1>checkout here</h1>
+                <StripeCheckout />
             </Wrapper>
         }
 
@@ -38,6 +38,10 @@ const EmptyWrapper = styled.main`
 `
 
 const Wrapper = styled.div`
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   
 
 `
 export default CheckoutPage;
