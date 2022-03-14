@@ -50,8 +50,11 @@ const CheckoutForm = () => {
         '/.netlify/functions/create-payment-intent',
         JSON.stringify({ cart, shipping_fee, total_amount })
       )
-    } catch (err) {
-
+      //get clientSecret and set it to state
+      const { clientSecret } = data.data;
+      setClientSecret(clientSecret);
+    } catch (error) {
+      // console.log(error.response)
     }
   }
 
