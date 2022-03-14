@@ -11,6 +11,7 @@ import axios from 'axios'
 import { useCartContext } from '../contexts/cart_context'
 import { formatPrice } from '../utils.js/helpers'
 import { useAuth0 } from '@auth0/auth0-react';
+import { useNavigate } from 'react-router-dom'
 
 
 // import { useHistory } from 'react-router-dom'
@@ -30,6 +31,8 @@ const CheckoutForm = () => {
   const elements = useElements();
   const { isAuthenticated, user } = useAuth0();
   const isUser = isAuthenticated && user;
+  //navigation
+  let navigate = useNavigate();
   const cardStyle = {
     style: {
       base: {
@@ -64,15 +67,35 @@ const CheckoutForm = () => {
 
   useEffect(() => {
     createPaymentIntent()
-    // esling-disable-next-ling
+    // eslint-disable-next-line
   }, [])
 
   const handleChange = async (event) => {
     setDisabled(event.empty)
     setError(event.error ? event.error.message : '')
   }
+  //setup payment
   const handleSubmit = async (ev) => {
     ev.preventDefault();
+    setProcessing(true);
+    const payload = await stripe.confirmCardPayment(clientSecret, {
+      payment_method: {
+        card: elements.getElement(CardElement)
+      }
+    })
+    //if error show error, else show message and return to home page
+    if (payload.error) {
+      setError(`Payment failed ${payload.error.message}`)
+      setProcessing(false);
+    } else {
+      setError(null);
+      setProcessing(false);
+      setSucceeded(true);
+      setTimeout(() => {
+        clearCart();
+        navigate('/')
+      }, (10000));
+    }
   }
   return <div>
     {
