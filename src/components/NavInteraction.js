@@ -9,7 +9,6 @@ const NavInteraction = () => {
   const { closeSidebar } = useProductsContext();
   const { total_amount } = useCartContext();
   const { loginWithRedirect, isAuthenticated, user, logout } = useAuth0();
-  console.log(isAuthenticated, user)
   const isUser = isAuthenticated && user;
   return <Wrapper className='cart-btn-wrapper'>
     <Link onClick={closeSidebar} className='cart-btn' to={'/cart'}>

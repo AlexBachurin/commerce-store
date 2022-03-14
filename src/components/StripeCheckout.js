@@ -10,12 +10,15 @@ import {
 import axios from 'axios'
 import { useCartContext } from '../contexts/cart_context'
 import { formatPrice } from '../utils.js/helpers'
+import { useAuth0 } from '@auth0/auth0-react';
+
+
 // import { useHistory } from 'react-router-dom'
 
 const promise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
 const CheckoutForm = () => {
-  const { cart, total_amount, shipping_fee, clearCart } = useCartContext();
+  const { cart, total_price, shipping_fee, clearCart } = useCartContext();
   // const history = useHistory();
   //stripe stuff
   const [succeeded, setSucceeded] = useState(false);
@@ -25,7 +28,8 @@ const CheckoutForm = () => {
   const [clientSecret, setClientSecret] = useState('');
   const stripe = useStripe();
   const elements = useElements();
-
+  const { isAuthenticated, user } = useAuth0();
+  const isUser = isAuthenticated && user;
   const cardStyle = {
     style: {
       base: {
@@ -48,7 +52,7 @@ const CheckoutForm = () => {
     try {
       const data = await axios.post(
         '/.netlify/functions/create-payment-intent',
-        JSON.stringify({ cart, shipping_fee, total_amount })
+        JSON.stringify({ cart, shipping_fee, total_price })
       )
       //get clientSecret and set it to state
       const { clientSecret } = data.data;
@@ -64,12 +68,27 @@ const CheckoutForm = () => {
   }, [])
 
   const handleChange = async (event) => {
-
+    setDisabled(event.empty)
+    setError(event.error ? event.error.message : '')
   }
   const handleSubmit = async (ev) => {
-
+    ev.preventDefault();
   }
   return <div>
+    {
+      succeeded ?
+        <article>
+          <h4>Thank you</h4>
+          <h4>Your payment was successful!</h4>
+          <h4>Redirecting to home page...</h4>
+        </article>
+        :
+        <article>
+          <h4>Hello, {isUser.name}</h4>
+          <p>Your total is {formatPrice(shipping_fee + total_price)}</p>
+          <p>Test Card Number: 4242 4242 4242 4242</p>
+        </article>
+    }
     <form id='payment-form' onSubmit={handleSubmit}>
       <CardElement
         id='card-element'
