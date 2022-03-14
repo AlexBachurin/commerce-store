@@ -48,7 +48,6 @@ export const ProductsProvider = ({ children }) => {
         dispatch({ type: GET_SINGLE_PRODUCT_BEGIN });
         try {
             const response = await axios.get(`${url}${id}`);
-            console.log(response.data)
             if (response) {
                 dispatch({ type: GET_SINGLE_PRODUCT_SUCCESS, payload: response.data });
             }

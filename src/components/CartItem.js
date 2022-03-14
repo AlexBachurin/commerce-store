@@ -8,12 +8,12 @@ const CartItem = ({ id, amount, price, color, name, image, max }) => {
   const { removeItemFromCart, toggleAmount } = useCartContext();
   //increase  amount
   const increase = () => {
-    console.log('plus');
+    // console.log('plus');
     toggleAmount(id, 'inc')
   }
   //decrease amount
   const decrease = () => {
-    console.log('minus')
+    // console.log('minus')
     toggleAmount(id, 'dec');
   }
   return <Wrapper>
