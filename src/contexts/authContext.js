@@ -20,7 +20,6 @@ const AuthProvider = ({ children }) => {
                 const user = result.user;
                 if (user) {
                     setIsAuthenticated(true);
-                    console.log(user)
                     setUser(user);
                     navigate('/')
                 }
