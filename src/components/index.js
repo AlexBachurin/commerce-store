@@ -1,6 +1,5 @@
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
-import PageMain from "./PageMain";
 import Footer from "./Footer";
 import NavInteraction from './NavInteraction'
 import HeroSection from "./HeroSection";
@@ -25,7 +24,7 @@ import CartContent from "./CartContent";
 import StripeCheckout from "./StripeCheckout";
 
 export {
-    Navbar, Sidebar, PageMain, Footer, NavInteraction, HeroSection, ContactsSection, ServicesSection, FeaturedProducts, Loading,
+    Navbar, Sidebar, Footer, NavInteraction, HeroSection, ContactsSection, ServicesSection, FeaturedProducts, Loading,
     HeroNavigation, Error, ProductImages, ProductContent, ProductStars, ProductAddToCart, ProductAmount, ProductsContent, ProductsDisplay, ProductsSort, ProductsFilter,
     GridView, ListView, CartContent, StripeCheckout
 }
