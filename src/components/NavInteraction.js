@@ -4,11 +4,12 @@ import { AiOutlineShoppingCart, AiOutlineUser } from 'react-icons/ai'
 import { Link } from 'react-router-dom';
 import { useProductsContext } from '../contexts/products_context';
 import { useCartContext } from '../contexts/cart_context';
-import { useAuth0 } from '@auth0/auth0-react';
+// import { useAuth0 } from '@auth0/auth0-react';
+import { useAuthContext } from '../contexts/authContext';
 const NavInteraction = () => {
   const { closeSidebar } = useProductsContext();
   const { total_amount } = useCartContext();
-  const { loginWithRedirect, isAuthenticated, user, logout } = useAuth0();
+  const { signIn, isAuthenticated, user, logout } = useAuthContext();
   const isUser = isAuthenticated && user;
   return <Wrapper className='cart-btn-wrapper'>
     <Link onClick={closeSidebar} className='cart-btn' to={'/cart'}>
@@ -20,12 +21,12 @@ const NavInteraction = () => {
     </Link>
     {/* //if logged in, show logout button else show login button */}
     {isUser ?
-      <button onClick={() => logout({ returnTo: window.location.origin })} className="auth-btn">
+      <button onClick={() => logout()} className="auth-btn">
         Logout
-        <img className='user-img' src={user.picture} alt={user.name} />
+        <img className='user-img' src={user.photoURL} alt={user.displayName} />
       </button>
       :
-      <button onClick={() => loginWithRedirect()} className="auth-btn">
+      <button onClick={() => signIn()} className="auth-btn">
         Login
         <AiOutlineUser />
       </button>

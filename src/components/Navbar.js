@@ -5,10 +5,11 @@ import { GiHamburgerMenu } from 'react-icons/gi'
 import { links } from '../utils.js/constants';
 import { NavInteraction } from '.';
 import { useProductsContext } from '../contexts/products_context';
-import { useAuth0 } from '@auth0/auth0-react';
+// import { useAuth0 } from '@auth0/auth0-react';
+import { useAuthContext } from '../contexts/authContext';
 const Navbar = () => {
   const { openSidebar } = useProductsContext();
-  const { isAuthenticated, user } = useAuth0();
+  const { isAuthenticated, user } = useAuthContext();
   return <NavContainer>
     <div className="nav-center">
       <div className="nav-header">

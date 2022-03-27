@@ -9,7 +9,7 @@ const AuthProvider = ({ children }) => {
     //state for user 
     const [user, setUser] = useState(null);
     //state for checking if user is Authenticated
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
     let navigate = useNavigate();
     ///Sing in functionality
     const signIn = () => {
@@ -19,7 +19,8 @@ const AuthProvider = ({ children }) => {
                 // The signed-in user info.
                 const user = result.user;
                 if (user) {
-                    setIsLoggedIn(true);
+                    setIsAuthenticated(true);
+                    console.log(user)
                     setUser(user);
                     navigate('/')
                 }
@@ -30,12 +31,12 @@ const AuthProvider = ({ children }) => {
 
     //logout
     const logout = () => {
-        setIsLoggedIn(false)
+        setIsAuthenticated(false)
         auth.signOut();
     }
     return <AuthContext.Provider value={{
         user,
-        isLoggedIn,
+        isAuthenticated,
         signIn,
         logout
     }}>

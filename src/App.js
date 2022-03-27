@@ -6,7 +6,8 @@ import { HomePage, AboutPage, ProductsPage, SingleProductPage, CartPage, ErrorPa
 function App() {
   return (
     // <AuthWrapper>
-    <Router>
+    // <Router>
+    <>
       <Navbar />
       <Sidebar />
       <Routes>
@@ -30,7 +31,8 @@ function App() {
         <Route path='*' element={<ErrorPage />} />
       </Routes>
       <Footer />
-    </Router>
+    </>
+    // </Router>
     // </AuthWrapper>
 
   );
