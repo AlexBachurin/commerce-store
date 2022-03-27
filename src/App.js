@@ -1,11 +1,10 @@
 
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import { Footer, Navbar, Sidebar } from "./components";
 import { HomePage, AboutPage, ProductsPage, SingleProductPage, CartPage, ErrorPage, CheckoutPage, RequireAuth } from './pages';
 function App() {
   return (
-    // <AuthWrapper>
     // <Router>
     <>
       <Navbar />
@@ -33,7 +32,6 @@ function App() {
       <Footer />
     </>
     // </Router>
-    // </AuthWrapper>
 
   );
 }

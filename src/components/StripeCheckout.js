@@ -10,7 +10,8 @@ import {
 import axios from 'axios'
 import { useCartContext } from '../contexts/cart_context'
 import { formatPrice } from '../utils.js/helpers'
-import { useAuth0 } from '@auth0/auth0-react';
+// import { useAuth0 } from '@auth0/auth0-react';
+import { useAuthContext } from '../contexts/authContext'
 import { useNavigate } from 'react-router-dom'
 
 
@@ -29,8 +30,7 @@ const CheckoutForm = () => {
   const [clientSecret, setClientSecret] = useState('');
   const stripe = useStripe();
   const elements = useElements();
-  const { isAuthenticated, user } = useAuth0();
-  const isUser = isAuthenticated && user;
+  const { user } = useAuthContext();
   //navigation
   let navigate = useNavigate();
   const cardStyle = {
@@ -107,7 +107,7 @@ const CheckoutForm = () => {
         </article>
         :
         <article>
-          <h4>Hello, {isUser.name}</h4>
+          <h4>Hello, {user.displayName}</h4>
           <p>Your total is {formatPrice(shipping_fee + total_price)}</p>
           <p>Test Card Number: 4242 4242 4242 4242</p>
         </article>

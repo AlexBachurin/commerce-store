@@ -3,7 +3,7 @@ import React from 'react'
 import { useAuthContext } from '../contexts/authContext';
 import { Navigate } from 'react-router-dom';
 const RequireAuth = ({ children, redirectTo }) => {
-    const { isAuthenticated, user } = useAuthContext;
+    const { isAuthenticated, user } = useAuthContext();
     const isUser = isAuthenticated && user;
     return isUser ? children : <Navigate to={redirectTo} />
 
