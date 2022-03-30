@@ -289,6 +289,12 @@ const Wrapper = styled.section`
       padding: 0;
     }
   }
+  @media (max-width: 1500px) {
+    form {
+      width: 50vw;
+      padding: 0;
+    }
+  }
 
 `
 export default StripeCheckout
