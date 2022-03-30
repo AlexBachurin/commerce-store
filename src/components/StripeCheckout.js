@@ -108,7 +108,7 @@ const CheckoutForm = () => {
         :
         <article>
           <h4>Hello, {user.displayName}</h4>
-          <p>Your total is {formatPrice(shipping_fee + total_price)}</p>
+          <p>Your total is <strong>{formatPrice(shipping_fee + total_price)}</strong></p>
           <p>Test Card Number: 4242 4242 4242 4242</p>
         </article>
     }
@@ -283,9 +283,10 @@ const Wrapper = styled.section`
       transform: rotate(360deg);
     }
   }
-  @media only screen and (max-width: 600px) {
+  @media (max-width: 600px) {
     form {
-      width: 80vw;
+      width: 100%;
+      padding: 0;
     }
   }
 
